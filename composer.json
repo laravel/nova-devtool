@@ -1,27 +1,44 @@
 {
-    "name": "nova-kit/nova-devtool",
-    "description": "Vue DevTool for Laravel Nova",
+    "name": "laravel/nova-devtool",
+    "description": "Devtool for Laravel Nova Development",
     "type": "library",
+    "keywords": ["laravel", "laravel-nova", "dev"],
     "license": "MIT",
     "authors": [
         {
+            "name": "Taylor Otwell",
+            "email": "taylor@laravel.com"
+        },
+        {
             "name": "Mior Muhammad Zaki",
-            "email": "crynobone@gmail.com"
+            "email": "mior@laravel.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "NovaKit\\NovaDevTool\\": "src/"
+            "Laravel\\Nova\\DevTool\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Laravel\\Nova\\DevTool\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "require": {
-        "php": "^7.3 || ^8.0"
+        "php": "^8.0",
+        "composer-runtime-api": "^2.2",
+        "fakerphp/faker": "^1.21",
+        "orchestra/workbench": "^7.0 || ^8.0 || ^9.0",
+        "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
-        "laravel/nova": "^4.14",
-        "orchestra/testbench": "^6.25 || ^7.11",
-        "orchestra/canvas": "^6.10.3 || ^7.2.1",
-        "nunomaduro/larastan": "^1.0.1 || ^2.0"
+        "larastan/larastan": "^2.4",
+        "laravel/nova": "^4.33.3",
+        "orchestra/testbench": "^7.39 || ^8.20 || ^9.0",
+        "phpunit/phpunit": "<11.0.0"
     },
     "repositories": [
         {
@@ -31,18 +48,29 @@
     ],
     "extra": {
         "branch-alias": {
-            "dev-main": "1.0.x-dev"
+            "dev-develop": "2.x-dev"
         },
         "laravel": {
             "providers": [
-                "NovaKit\\NovaDevTool\\LaravelServiceProvider"
+                "Laravel\\Nova\\DevTool\\LaravelServiceProvider"
             ]
         }
     },
     "scripts": {
         "post-autoload-dump": [
-            "@php ./vendor/bin/testbench package:discover --ansi",
-            "@php ./vendor/bin/testbench nova:publish"
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "pint",
+            "@php vendor/bin/phpstan analyse"
         ]
     },
     "prefer-stable": true,

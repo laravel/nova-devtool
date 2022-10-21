@@ -1,6 +1,6 @@
 <?php
 
-namespace NovaKit\NovaDevTool\Console\Concerns;
+namespace Laravel\Nova\DevTool\Console\Concerns;
 
 use Symfony\Component\Process\Process;
 

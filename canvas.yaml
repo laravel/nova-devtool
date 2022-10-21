@@ -24,3 +24,6 @@ provider:
 
 testing:
   namespace: NovaKit\NovaDevTool\Tests
+
+generators:
+  - Orchestra\Canvas\Commands\ConsoleGenerator

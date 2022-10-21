@@ -1,14 +1,18 @@
 <?php
 
-namespace NovaKit\NovaDevTool\Console;
+namespace Laravel\Nova\DevTool\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\PackageManifest;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'nova:devtool-enable', description: 'Enable Vue DevTool on Laravel Nova')]
 class EnableCommand extends Command
 {
     use Concerns\InteractsWithProcess;
+    use ConfirmableTrait;
 
     /**
      * The name and signature of the console command.
@@ -31,27 +35,32 @@ class EnableCommand extends Command
      */
     public function handle()
     {
+        if (! $this->confirmToProceed()) {
+            return self::FAILURE;
+        }
+
         $filesystem = new Filesystem();
         $manifest = $this->laravel->make(PackageManifest::class);
-
-        $vendorPublicPath = public_path('vendor/');
         $novaVendorPath = $manifest->vendorPath.'/laravel/nova';
 
-        if (! $filesystem->isDirectory("{$vendorPublicPath}/nova-cached")) {
-            $filesystem->makeDirectory("{$vendorPublicPath}/nova-cached");
+        if (! $filesystem->isDirectory("{$novaVendorPath}/public-cached")) {
+            $filesystem->makeDirectory("{$novaVendorPath}/public-cached");
 
-            $filesystem->copyDirectory("{$vendorPublicPath}/nova", "{$vendorPublicPath}/nova-cached");
-            $filesystem->copy(__DIR__.'/stubs/gitignore.stub', "{$vendorPublicPath}/nova-cached/.gitignore");
+            $filesystem->copyDirectory("{$novaVendorPath}/public", "{$novaVendorPath}/public-cached");
+            $filesystem->put("{$novaVendorPath}/public-cached/.gitignore", '*');
+        }
+
+        if (! $filesystem->isFile("{$novaVendorPath}/webpack.mix.js")) {
+            $filesystem->copy("{$novaVendorPath}/webpack.mix.js.dist", "{$novaVendorPath}/webpack.mix.js");
         }
 
         $this->executeCommand('npm set progress=false && npm ci', $novaVendorPath);
-
-        $filesystem->copy($novaVendorPath.'/webpack.mix.js.dist', $novaVendorPath.'/webpack.mix.js');
+        $filesystem->put("{$novaVendorPath}/node_modules/.gitignore", '*');
 
         $this->executeCommand('npm set progress=false && npm run dev', $novaVendorPath);
 
-        $this->callSilent('vendor:publish', ['--tag' => 'nova-assets']);
+        $this->call('vendor:publish', ['--tag' => 'nova-assets', '--force' => true]);
 
-        return Command::SUCCESS;
+        return self::SUCCESS;
     }
 }
