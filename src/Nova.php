@@ -23,7 +23,7 @@ class Nova extends \Laravel\Nova\Nova
 
         $resources = [];
 
-        foreach ((new Finder())->in($directory)->files() as $resource) {
+        foreach ((new Finder)->in($directory)->files() as $resource) {
             $resource = $namespace.str_replace(
                 ['/', '.php'],
                 ['\\', ''],

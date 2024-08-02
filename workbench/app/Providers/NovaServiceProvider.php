@@ -53,7 +53,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function dashboards()
     {
         return [
-            new \Laravel\Nova\Dashboards\Main(),
+            new \Laravel\Nova\Dashboards\Main,
         ];
     }
 

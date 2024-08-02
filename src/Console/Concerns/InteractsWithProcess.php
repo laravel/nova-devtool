@@ -9,8 +9,6 @@ trait InteractsWithProcess
     /**
      * Run the given command as a process.
      *
-     * @param  string  $command
-     * @param  string  $path
      * @return void
      */
     protected function executeCommand(string $command, string $path)

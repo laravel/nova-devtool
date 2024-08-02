@@ -39,7 +39,7 @@ class EnableCommand extends Command
             return self::FAILURE;
         }
 
-        $filesystem = new Filesystem();
+        $filesystem = new Filesystem;
         $manifest = $this->laravel->make(PackageManifest::class);
         $novaVendorPath = $manifest->vendorPath.'/laravel/nova';
 
