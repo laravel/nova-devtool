@@ -2,7 +2,7 @@ providers:
   - Laravel\Nova\NovaCoreServiceProvider
   - Workbench\App\Providers\NovaServiceProvider
   - Laravel\Nova\NovaServiceProvider
-  - Laravel\Nova\DevTool\LaravelServiceProvider
+  - Laravel\Nova\DevTool\DevToolServiceProvider
 
 migrations: true
 

@@ -56,7 +56,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Laravel\\Nova\\DevTool\\LaravelServiceProvider"
+                "Laravel\\Nova\\DevTool\\DevToolServiceProvider"
             ]
         }
     },
