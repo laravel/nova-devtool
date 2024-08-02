@@ -14,11 +14,8 @@ class DevTool extends Nova
 {
     /**
      * Register all of the resource classes in the given directory.
-     *
-     * @param  string  $directory
-     * @return void
      */
-    public static function resourcesIn($directory)
+    public static function resourcesIn(string $directory): void
     {
         $namespace = 'Workbench\App\\';
 

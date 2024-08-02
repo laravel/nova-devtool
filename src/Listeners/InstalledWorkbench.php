@@ -76,10 +76,10 @@ class InstalledWorkbench
         );
 
         Collection::make([
-            Workbench::path('app/.gitkeep'),
-            Workbench::path('app/Nova/.gitkeep'),
-            Workbench::path('app/Providers/.gitkeep'),
-            Workbench::path('database/seeders/.gitkeep'),
+            Workbench::path(['app', '.gitkeep']),
+            Workbench::path(['app', 'Nova', '.gitkeep']),
+            Workbench::path(['app', 'Providers', '.gitkeep']),
+            Workbench::path(['database', 'seeders', '.gitkeep']),
         ])->each(function ($file) {
             $this->files->delete($file);
         });
