@@ -11,10 +11,10 @@ parameters:
   level: 6
 
   ignoreErrors:
+    - identifier: missingType.iterableValue
+    - identifier: missingType.generics
     - '#Method [a-zA-Z\\\<\>]+::handle\(\) should return bool\|null but returns int.#'
 
-  checkMissingIterableValueType: false
   noUnnecessaryCollectionCall: false
   checkModelProperties: false
   reportUnmatchedIgnoredErrors: false
-  checkGenericClassInNonGenericObjectType: false

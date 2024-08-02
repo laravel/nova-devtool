@@ -37,7 +37,8 @@
     "require-dev": {
         "larastan/larastan": "^2.4",
         "laravel/nova": "dev-develop",
-        "orchestra/testbench": "^8.24|^9.2"
+        "orchestra/testbench": "^8.24|^9.2",
+        "phpstan/phpstan": "^1.11"
     },
     "repositories": [
         {
