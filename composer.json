@@ -31,13 +31,13 @@
         "php": "^8.0",
         "composer-runtime-api": "^2.2",
         "fakerphp/faker": "^1.21",
-        "orchestra/workbench": "^7.0 || ^8.0 || ^9.0",
+        "orchestra/workbench": "^7.0|^8.0|^9.0",
         "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
         "larastan/larastan": "^2.4",
-        "laravel/nova": "^4.33.3",
-        "orchestra/testbench": "^7.39 || ^8.20 || ^9.0",
+        "laravel/nova": "^4.34",
+        "orchestra/testbench": "^7.39|^8.20|^9.0",
         "phpunit/phpunit": "<11.0.0"
     },
     "repositories": [
