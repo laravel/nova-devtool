@@ -14,8 +14,7 @@ class DashboardCommandTest extends TestCase
         'app/Nova/Dashboards/Post.php',
     ];
 
-    /** @test */
-    public function it_can_generate_dashboard_file()
+    public function test_it_can_generate_dashboard_file()
     {
         $this->artisan('nova:dashboard', ['name' => 'Post', '--preset' => 'laravel'])
             ->assertSuccessful();
@@ -27,8 +26,7 @@ class DashboardCommandTest extends TestCase
         ], 'app/Nova/Dashboards/Post.php');
     }
 
-    /** @test */
-    public function it_can_generate_the_main_dashboard_file()
+    public function test_it_can_generate_the_main_dashboard_file()
     {
         $this->artisan('nova:dashboard', ['name' => 'Main', '--preset' => 'laravel'])
             ->assertSuccessful();

@@ -8,10 +8,8 @@ trait InteractsWithProcess
 {
     /**
      * Run the given command as a process.
-     *
-     * @return void
      */
-    protected function executeCommand(string $command, string $path)
+    protected function executeCommand(string $command, string $path): void
     {
         $process = Process::fromShellCommandline($command, $path)->setTimeout(null);
 

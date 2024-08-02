@@ -9,21 +9,16 @@ use Orchestra\Testbench\Foundation\Console\Actions\GeneratesFile;
 use Orchestra\Workbench\Events\InstallEnded;
 use Orchestra\Workbench\Workbench;
 
+use function Illuminate\Filesystem\join_paths;
+
 class InstalledWorkbench
 {
     /**
-     * The filesystem instance.
-     *
-     * @var \Illuminate\Filesystem\Filesystem;
-     */
-    public $files;
-
-    /**
      * Construct a new event listener.
      */
-    public function __construct(Filesystem $files)
+    public function __construct(public Filesystem $files)
     {
-        $this->files = $files;
+        //
     }
 
     /**
@@ -49,8 +44,8 @@ class InstalledWorkbench
             components: $event->components,
             workingPath: $workingDirectory,
         ))->handle(
-            $workingDirectory.DIRECTORY_SEPARATOR.'base-resource.stub',
-            Workbench::path('app/Nova/Resource.php')
+            join_paths($workingDirectory, 'base-resource.stub'),
+            Workbench::path(['app', 'Nova', 'Resource.php'])
         );
 
         (new GeneratesFile(
@@ -58,8 +53,8 @@ class InstalledWorkbench
             components: $event->components,
             workingPath: $workingDirectory,
         ))->handle(
-            $workingDirectory.DIRECTORY_SEPARATOR.'UserResource.stub',
-            Workbench::path('app/Nova/User.php')
+            join_paths($workingDirectory, 'UserResource.stub'),
+            Workbench::path(['app', 'Nova', 'User.php'])
         );
 
         (new GeneratesFile(
@@ -67,8 +62,8 @@ class InstalledWorkbench
             components: $event->components,
             workingPath: $workingDirectory,
         ))->handle(
-            $workingDirectory.DIRECTORY_SEPARATOR.'NovaServiceProvider.stub',
-            Workbench::path('app/Providers/NovaServiceProvider.php')
+            join_paths($workingDirectory, 'NovaServiceProvider.stub'),
+            Workbench::path(['app', 'Providers', 'NovaServiceProvider.php'])
         );
 
         (new GeneratesFile(
@@ -76,8 +71,8 @@ class InstalledWorkbench
             components: $event->components,
             workingPath: $workingDirectory,
         ))->handle(
-            $workingDirectory.DIRECTORY_SEPARATOR.'DatabaseSeeder.stub',
-            Workbench::path('database/seeders/DatabaseSeeder.php')
+            join_paths($workingDirectory, 'DatabaseSeeder.stub'),
+            Workbench::path(['database', 'seeders', 'DatabaseSeeder.php'])
         );
 
         Collection::make([

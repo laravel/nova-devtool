@@ -13,8 +13,7 @@ class FilterCommandTest extends TestCase
         'app/Nova/Filters/Post.php',
     ];
 
-    /** @test */
-    public function it_can_generate_filter_file()
+    public function test_it_can_generate_filter_file()
     {
         $this->artisan('nova:filter', ['name' => 'Post', '--preset' => 'laravel'])
             ->assertSuccessful();
@@ -28,8 +27,7 @@ class FilterCommandTest extends TestCase
         ], 'app/Nova/Filters/Post.php');
     }
 
-    /** @test */
-    public function it_can_generate_filter_file_with_boolean_type()
+    public function test_it_can_generate_filter_file_with_boolean_type()
     {
         $this->artisan('nova:filter', ['name' => 'Post', '--boolean' => true, '--preset' => 'laravel'])
             ->assertSuccessful();
@@ -42,8 +40,7 @@ class FilterCommandTest extends TestCase
         ], 'app/Nova/Filters/Post.php');
     }
 
-    /** @test */
-    public function it_can_generate_filter_file_with_date_type()
+    public function test_it_can_generate_filter_file_with_date_type()
     {
         $this->artisan('nova:filter', ['name' => 'Post', '--date' => true, '--preset' => 'laravel'])
             ->assertSuccessful();

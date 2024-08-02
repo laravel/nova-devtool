@@ -7,21 +7,16 @@ use Orchestra\Testbench\Foundation\Console\Actions\GeneratesFile;
 use Orchestra\Workbench\Events\InstallStarted;
 use Orchestra\Workbench\Workbench;
 
+use function Illuminate\Filesystem\join_paths;
+
 class InstallingWorkbench
 {
     /**
-     * The filesystem instance.
-     *
-     * @var \Illuminate\Filesystem\Filesystem;
-     */
-    public $files;
-
-    /**
      * Construct a new event listener.
      */
-    public function __construct(Filesystem $files)
+    public function __construct(public Filesystem $files)
     {
-        $this->files = $files;
+        //
     }
 
     /**
@@ -38,7 +33,7 @@ class InstallingWorkbench
             components: $event->components,
             workingPath: $workingDirectory,
         ))->handle(
-            $workingDirectory.DIRECTORY_SEPARATOR.'testbench.stub',
+            join_paths($workingDirectory, 'testbench.stub'),
             Workbench::packagePath('testbench.yaml')
         );
     }

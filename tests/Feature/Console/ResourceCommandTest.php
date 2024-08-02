@@ -14,8 +14,7 @@ class ResourceCommandTest extends TestCase
         'app/Nova/Resource.php',
     ];
 
-    /** @test */
-    public function it_can_generate_resource_file()
+    public function test_it_can_generate_resource_file()
     {
         $this->artisan('nova:resource', ['name' => 'Post', '--preset' => 'laravel'])
             ->assertSuccessful();

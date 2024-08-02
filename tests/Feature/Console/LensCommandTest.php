@@ -13,8 +13,7 @@ class LensCommandTest extends TestCase
         'app/Nova/Lenses/Post.php',
     ];
 
-    /** @test */
-    public function it_can_generate_lens_file()
+    public function test_it_can_generate_lens_file()
     {
         $this->artisan('nova:lens', ['name' => 'Post', '--preset' => 'laravel'])
             ->assertSuccessful();
@@ -25,7 +24,7 @@ class LensCommandTest extends TestCase
             'use Laravel\Nova\Http\Requests\NovaRequest;',
             'use Laravel\Nova\Lenses\Lens;',
             'class Post extends Lens',
-            'public static function query(LensRequest $request, $query)',
+            'public static function query(LensRequest $request, Builder $query): Builder|Paginator',
         ], 'app/Nova/Lenses/Post.php');
     }
 }

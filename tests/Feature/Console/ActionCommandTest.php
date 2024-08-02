@@ -13,8 +13,7 @@ class ActionCommandTest extends TestCase
         'app/Nova/Actions/Sleep.php',
     ];
 
-    /** @test */
-    public function it_can_generate_action_file()
+    public function test_it_can_generate_action_file()
     {
         $this->artisan('nova:action', ['name' => 'Sleep', '--preset' => 'laravel'])
             ->assertSuccessful();
@@ -25,12 +24,12 @@ class ActionCommandTest extends TestCase
             'use Illuminate\Queue\InteractsWithQueue;',
             'use Laravel\Nova\Actions\Action;',
             'class Sleep extends Action',
-            'use InteractsWithQueue, Queueable;',
+            'use InteractsWithQueue;',
+            'use Queueable;',
         ], 'app/Nova/Actions/Sleep.php');
     }
 
-    /** @test */
-    public function it_can_generate_queued_action_file()
+    public function test_it_can_generate_queued_action_file()
     {
         $this->artisan('nova:action', ['name' => 'Sleep', '--queued' => true, '--preset' => 'laravel'])
             ->assertSuccessful();
@@ -53,8 +52,7 @@ class ActionCommandTest extends TestCase
         ], 'app/Nova/Actions/Sleep.php');
     }
 
-    /** @test */
-    public function it_can_generate_destructive_action_file()
+    public function test_it_can_generate_destructive_action_file()
     {
         $this->artisan('nova:action', ['name' => 'Sleep', '--destructive' => true, '--preset' => 'laravel'])
             ->assertSuccessful();
@@ -66,8 +64,7 @@ class ActionCommandTest extends TestCase
         ], 'app/Nova/Actions/Sleep.php');
     }
 
-    /** @test */
-    public function it_can_generate_queued_destructive_action_file()
+    public function test_it_can_generate_queued_destructive_action_file()
     {
         $this->artisan('nova:action', ['name' => 'Sleep', '--queued' => true, '--destructive' => true, '--preset' => 'laravel'])
             ->assertSuccessful();
