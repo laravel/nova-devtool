@@ -14,7 +14,7 @@ use Laravel\Nova\Console\ResourceCommand;
 use Orchestra\Workbench\Events\InstallEnded;
 use Orchestra\Workbench\Events\InstallStarted;
 
-class LaravelServiceProvider extends ServiceProvider
+class DevToolServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
