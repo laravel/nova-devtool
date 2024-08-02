@@ -36,13 +36,13 @@
     },
     "require-dev": {
         "larastan/larastan": "^2.4",
-        "laravel/nova": "^5.0",
+        "laravel/nova": "dev-develop",
         "orchestra/testbench": "^8.24|^9.2"
     },
     "repositories": [
         {
-            "type": "composer",
-            "url": "https://nova.laravel.com"
+            "type": "vcs",
+            "url": "https://github.com/laravel/nova"
         }
     ],
     "config": {

@@ -10,9 +10,9 @@ class Main extends Dashboard
     /**
      * Get the cards for the dashboard.
      *
-     * @return array
+     * @return array<int, \Laravel\Nova\Card>
      */
-    public function cards()
+    public function cards(): array
     {
         return [
             new Help,
