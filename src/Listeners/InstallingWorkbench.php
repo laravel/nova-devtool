@@ -2,6 +2,7 @@
 
 namespace Laravel\Nova\DevTool\Listeners;
 
+use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Testbench\Foundation\Console\Actions\GeneratesFile;
 use Orchestra\Workbench\Events\InstallStarted;
@@ -14,8 +15,10 @@ class InstallingWorkbench
     /**
      * Construct a new event listener.
      */
-    public function __construct(public Filesystem $files)
-    {
+    public function __construct(
+        public ConsoleKernel $kernel,
+        public Filesystem $files
+    ) {
         //
     }
 
@@ -36,5 +39,8 @@ class InstallingWorkbench
             join_paths($workingDirectory, 'testbench.stub'),
             Workbench::packagePath('testbench.yaml')
         );
+
+        $this->kernel->call('make:user-model');
+        $this->kernel->call('make:user-factory');
     }
 }
