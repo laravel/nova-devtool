@@ -23,7 +23,10 @@ class DevToolServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->runningInConsole()) {
+        if (
+            $this->app->runningInConsole()
+            && defined('TESTBENCH_WORKING_PATH')
+        ) {
             $this->registerActionCommand();
             $this->registerBaseResourceCommand();
             $this->registerDashboardCommand();

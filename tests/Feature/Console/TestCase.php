@@ -9,4 +9,15 @@ class TestCase extends \Orchestra\Testbench\TestCase
 {
     use InteractsWithPublishedFiles;
     use WithWorkbench;
+
+    /** {@inheritDoc} */
+    #[\Override]
+    protected function setUp(): void
+    {
+        if (! defined('TESTBENCH_WORKING_PATH')) {
+            define('TESTBENCH_WORKING_PATH', realpath(__DIR__.'/../../'));
+        }
+
+        parent::setUp();
+    }
 }
