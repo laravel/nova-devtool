@@ -2,6 +2,7 @@
 
 namespace Laravel\Nova\DevTool\Console;
 
+use Laravel\Nova\Console\FilterCommand as Command;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -10,7 +11,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
  * @see https://github.com/laravel/nova/blob/4.0/src/Console/FilterCommand.php
  */
 #[AsCommand(name: 'nova:filter', description: 'Create a new filter class')]
-class FilterCommand extends \Laravel\Nova\Console\FilterCommand
+class FilterCommand extends Command
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;

@@ -37,6 +37,7 @@
     "require-dev": {
         "larastan/larastan": "^2.4",
         "laravel/nova": "dev-develop",
+        "laravel/pint": "^1.17",
         "orchestra/testbench": "^8.24|^9.2",
         "phpstan/phpstan": "^1.11"
     },
@@ -73,8 +74,12 @@
             "@php vendor/bin/testbench serve"
         ],
         "lint": [
-            "pint",
-            "@php vendor/bin/phpstan analyse"
+            "@php vendor/bin/pint",
+            "@php vendor/bin/phpstan analyse --verbose --ansi"
+        ],
+        "ci": [
+            "@lint",
+            "@php vendor/bin/phpunit"
         ]
     },
     "prefer-stable": true,

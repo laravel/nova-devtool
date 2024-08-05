@@ -2,15 +2,16 @@
 
 namespace Laravel\Nova\DevTool\Console;
 
+use Laravel\Nova\Console\DashboardCommand as Command;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/nova/blob/4.0/src/Console/DashboardCommand.php
+ * @see \Laravel\Nova\Console\DashboardCommand
  */
 #[AsCommand(name: 'nova:dashboard', description: 'Create a new dashboard')]
-class DashboardCommand extends \Laravel\Nova\Console\DashboardCommand
+class DashboardCommand extends Command
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;

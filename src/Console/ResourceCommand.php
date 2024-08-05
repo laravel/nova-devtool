@@ -2,12 +2,13 @@
 
 namespace Laravel\Nova\DevTool\Console;
 
+use Laravel\Nova\Console\ResourceCommand as Command;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'nova:resource', description: 'Create a new resource class')]
-class ResourceCommand extends \Laravel\Nova\Console\ResourceCommand
+class ResourceCommand extends Command
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;

@@ -14,20 +14,6 @@ class DisableCommand extends Command
     use ConfirmableTrait;
 
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'nova:devtool-disable';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Disable Vue DevTool on Laravel Nova';
-
-    /**
      * Execute the console command.
      *
      * @return int

@@ -2,15 +2,16 @@
 
 namespace Laravel\Nova\DevTool\Console;
 
+use Laravel\Nova\Console\BaseResourceCommand as Command;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/nova/blob/4.0/src/Console/BaseResourceCommand.php
+ * @see \Laravel\Nova\Console\BaseResourceCommand
  */
 #[AsCommand(name: 'nova:base-resource', description: 'Create a new base resource class')]
-class BaseResourceCommand extends \Laravel\Nova\Console\BaseResourceCommand
+class BaseResourceCommand extends Command
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;

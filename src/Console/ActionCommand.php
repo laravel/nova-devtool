@@ -2,15 +2,16 @@
 
 namespace Laravel\Nova\DevTool\Console;
 
+use Laravel\Nova\Console\ActionCommand as Command;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/nova/blob/4.0/src/Console/ActionCommand.php
+ * @see \Laravel\Nova\Console\ActionCommand
  */
 #[AsCommand(name: 'nova:action', description: 'Create a new action class')]
-class ActionCommand extends \Laravel\Nova\Console\ActionCommand
+class ActionCommand extends Command
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;

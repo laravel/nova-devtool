@@ -2,6 +2,7 @@
 
 namespace Laravel\Nova\DevTool\Console;
 
+use Laravel\Nova\Console\LensCommand as Command;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -10,7 +11,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
  * @see https://github.com/laravel/nova/blob/4.0/src/Console/LensCommand.php
  */
 #[AsCommand(name: 'nova:lens', description: 'Create a new lens class')]
-class LensCommand extends \Laravel\Nova\Console\LensCommand
+class LensCommand extends Command
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;
