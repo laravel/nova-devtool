@@ -62,7 +62,7 @@ class InstalledWorkbench
                 'public static $model = \Illuminate\Foundation\Auth\User::class;',
             ], [
                 'public static $model = \Workbench\App\Models\User::class;',
-            ], $userResource)
+            ], $userResource);
         }
 
         (new GeneratesFile(
