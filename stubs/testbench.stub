@@ -10,6 +10,7 @@ seeders:
 workbench:
   start: /nova
   build:
+    - package-discover
     - asset-publish
     - create-sqlite-db
     - db:wipe
