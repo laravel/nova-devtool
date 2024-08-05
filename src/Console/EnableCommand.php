@@ -15,20 +15,6 @@ class EnableCommand extends Command
     use ConfirmableTrait;
 
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'nova:devtool-enable';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Enable Vue DevTool on Laravel Nova';
-
-    /**
      * Execute the console command.
      *
      * @return int
