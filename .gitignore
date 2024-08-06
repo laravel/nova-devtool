@@ -3,6 +3,10 @@
 /composer.lock
 /auth.json
 
+# NPM
+/node_modules/*
+/package-lock.json
+
 # PHPUnit
 /coverage/*
 /.phpunit.cache/*
