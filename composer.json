@@ -48,10 +48,6 @@
         }
     ],
     "config": {
-        "preferred-install": {
-            "laravel/nova": "source",
-            "*": "auto"
-        },
         "sort-packages": true
     },
     "extra": {
