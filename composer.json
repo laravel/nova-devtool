@@ -70,7 +70,7 @@
             "@php vendor/bin/testbench serve"
         ],
         "lint": [
-            "@php vendor/bin/pint",
+            "@php vendor/bin/pint --ansi",
             "@php vendor/bin/phpstan analyse --verbose --ansi"
         ],
         "ci": [
