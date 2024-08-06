@@ -1,7 +1,6 @@
 {
   "name": "laravel-nova-devtool",
   "description": "Laravel Nova DevTool",
-  "private": true,
   "scripts": {
     "dev": "npm run development",
     "development": "mix",
