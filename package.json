@@ -1,15 +1,6 @@
 {
   "name": "laravel-nova-devtool",
   "description": "Laravel Nova DevTool",
-  "scripts": {
-    "dev": "npm run development",
-    "development": "mix",
-    "watch": "mix watch",
-    "watch-poll": "mix watch -- --watch-options-poll=1000",
-    "hot": "mix watch --hot",
-    "prod": "npm run production",
-    "production": "mix --production"
-  },
   "dependencies": {
     "@vue/compiler-sfc": "^3.4.19",
     "laravel-mix": "^6.0.49",
