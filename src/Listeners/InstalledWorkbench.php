@@ -53,15 +53,15 @@ class InstalledWorkbench
             components: $event->components,
             workingPath: $workingDirectory,
         ))->handle(
-            join_paths($workingDirectory, 'UserResource.stub'),
+            join_paths($workingDirectory, 'user-resource.stub'),
             $userResource = Workbench::path(['app', 'Nova', 'User.php'])
         );
 
-        if ($this->files->exists(Workbench::path(['app', 'Models', 'User.php']))) {
+        if (! $this->files->exists(Workbench::path(['app', 'Models', 'User.php']))) {
             $this->files->replaceInFile([
-                'public static $model = \Illuminate\Foundation\Auth\User::class;',
-            ], [
                 'public static $model = \Workbench\App\Models\User::class;',
+            ], [
+                'public static $model = \Illuminate\Foundation\Auth\User::class;',
             ], $userResource);
         }
 

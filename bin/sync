@@ -20,6 +20,8 @@ Illuminate\Support\Collection::make([
     'destructive-action.stub',
     'destructive-action.queued.stub',
     'dashboard.stub',
+    'user-resource.stub',
+    'NovaServiceProvider.stub',
 ])->transform(fn ($file) => "{$workingPath}/vendor/laravel/nova/src/Console/stubs/{$file}")
 ->map(fn ($file) => str_contains($file, '*') ? [...$files->glob($file)] : $file)
 ->flatten()
@@ -36,3 +38,43 @@ $files->copy("{$workingPath}/vendor/laravel/nova/src/Console/stubs/main-dashboar
 transform([
     "namespace App\Nova\Dashboards" => "namespace {{ namespace }}",
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/stubs/main-dashboard.stub"));
+
+transform([
+    "namespace App\Nova;" => "namespace Workbench\App\Nova;",
+    "use Laravel\Nova\Fields\Gravatar;".PHP_EOL => "",
+    "    public static \$model = \App\Models\User::class;" =>  "    public static \$model = \Workbench\App\Models\User::class;",
+    "            Gravatar::make()->maxWidth(50),".PHP_EOL.PHP_EOL => "",
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/stubs/user-resource.stub"));
+
+transform([
+    "namespace App\Providers;" => "namespace Workbench\App\Providers;",
+    PHP_EOL."use App\Models\User;" => "",
+    "use Laravel\Nova\Nova;" => "use Laravel\Nova\DevTool\DevTool as Nova;",
+    "use Laravel\Nova\NovaApplicationServiceProvider;" => "use Laravel\Nova\NovaApplicationServiceProvider;".PHP_EOL."use Orchestra\Workbench\Workbench;".PHP_EOL."use Workbench\App\Models\User;",
+    "->withAuthenticationRoutes()" => "->withAuthenticationRoutes(default: true)",
+    "        Gate::define('viewNova', function (User \$user) {
+            return in_array(\$user->email, [
+                //
+            ]);
+        });
+" => "        Gate::define('viewNova', function (\$user) {
+            return true;
+        });
+",
+    "new \App\Nova\Dashboards\Main," => "new \Laravel\Nova\Dashboards\Main,",
+    "    /**
+     * Register any application services.
+" => "    /**
+     * Register the application's Nova resources.
+     *
+     * @return void
+     */
+    protected function resources()
+    {
+        Nova::resourcesIn(Workbench::path('app/Nova'));
+    }
+
+    /**
+     * Register any application services.
+"
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/stubs/NovaServiceProvider.stub"));
