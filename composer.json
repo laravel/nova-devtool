@@ -21,7 +21,7 @@
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
         "fakerphp/faker": "^1.21",
-        "laravel/nova": "dev-develop",
+        "laravel/nova": "^5.0|dev-develop",
         "orchestra/workbench": "^8.7|^9.3",
         "symfony/polyfill-php83": "^1.28"
     },
