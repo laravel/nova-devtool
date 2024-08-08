@@ -4,16 +4,6 @@
     "type": "library",
     "keywords": ["laravel", "laravel-nova", "dev"],
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Taylor Otwell",
-            "email": "taylor@laravel.com"
-        },
-        {
-            "name": "Mior Muhammad Zaki",
-            "email": "mior@laravel.com"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Laravel\\Nova\\DevTool\\": "src/"
