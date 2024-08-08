@@ -10,8 +10,7 @@ class DashboardCommandTest extends TestCase
      * @var array<int, string>|null
      */
     protected $files = [
-        'app/Nova/Dashboards/Main.php',
-        'app/Nova/Dashboards/Post.php',
+        'app/Nova/Dashboards/*.php',
     ];
 
     public function test_it_can_generate_dashboard_file()

@@ -10,7 +10,7 @@ class FilterCommandTest extends TestCase
      * @var array<int, string>|null
      */
     protected $files = [
-        'app/Nova/Filters/Post.php',
+        'app/Nova/Filters/*.php',
     ];
 
     public function test_it_can_generate_filter_file()

@@ -10,8 +10,7 @@ class ResourceCommandTest extends TestCase
      * @var array<int, string>|null
      */
     protected $files = [
-        'app/Nova/Post.php',
-        'app/Nova/Resource.php',
+        'app/Nova/*.php',
     ];
 
     public function test_it_can_generate_resource_file()

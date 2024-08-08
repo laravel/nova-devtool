@@ -10,7 +10,7 @@ class ActionCommandTest extends TestCase
      * @var array<int, string>|null
      */
     protected $files = [
-        'app/Nova/Actions/Sleep.php',
+        'app/Nova/Actions/*.php',
     ];
 
     public function test_it_can_generate_action_file()

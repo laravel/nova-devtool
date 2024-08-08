@@ -10,7 +10,7 @@ class LensCommandTest extends TestCase
      * @var array<int, string>|null
      */
     protected $files = [
-        'app/Nova/Lenses/Post.php',
+        'app/Nova/Lenses/*.php',
     ];
 
     public function test_it_can_generate_lens_file()
