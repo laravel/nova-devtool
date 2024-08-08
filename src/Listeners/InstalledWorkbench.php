@@ -57,14 +57,6 @@ class InstalledWorkbench
             $userResource = Workbench::path(['app', 'Nova', 'User.php'])
         );
 
-        if (! $this->files->exists(Workbench::path(['app', 'Models', 'User.php']))) {
-            $this->files->replaceInFile([
-                'public static $model = \Workbench\App\Models\User::class;',
-            ], [
-                'public static $model = \Illuminate\Foundation\Auth\User::class;',
-            ], $userResource);
-        }
-
         (new GeneratesFile(
             filesystem: $this->files,
             components: $event->components,
