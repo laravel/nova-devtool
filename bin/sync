@@ -65,10 +65,8 @@ transform([
      * Register any application services.
 " => "    /**
      * Register the application's Nova resources.
-     *
-     * @return void
      */
-    protected function resources()
+    protected function resources(): void
     {
         Nova::resourcesInWorkbench();
     }
