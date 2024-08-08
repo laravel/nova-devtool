@@ -56,6 +56,7 @@
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": "@php vendor/bin/testbench workbench:build --ansi",
         "serve": [
+            "Composer\\Config::disableProcessTimeout",
             "@build",
             "@php vendor/bin/testbench serve"
         ],
@@ -63,9 +64,12 @@
             "@php vendor/bin/pint --ansi",
             "@php vendor/bin/phpstan analyse --verbose --ansi"
         ],
+        "test": [
+            "@php vendor/bin/phpunit"
+        ],
         "ci": [
             "@lint",
-            "@php vendor/bin/phpunit"
+            "@test"
         ]
     },
     "prefer-stable": true,
