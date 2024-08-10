@@ -28,6 +28,12 @@ class InstalledWorkbench
      */
     public function handle(InstallEnded $event)
     {
+        $force = false;
+
+        if ($event->input->hasOption('force')) {
+            $force = $event->input->getOption('force');
+        }
+
         $workingDirectory = realpath(__DIR__.'/../../stubs');
 
         (new EnsureDirectoryExists(
@@ -35,14 +41,15 @@ class InstalledWorkbench
             components: $event->components,
             workingPath: $workingDirectory,
         ))->handle([
-            Workbench::path('app/Nova'),
-            Workbench::path('app/Providers'),
+            Workbench::path(['app', 'Nova']),
+            Workbench::path(['app', 'Providers']),
         ]);
 
         (new GeneratesFile(
             filesystem: $this->files,
             components: $event->components,
             workingPath: $workingDirectory,
+            force: $force,
         ))->handle(
             join_paths($workingDirectory, 'base-resource.stub'),
             Workbench::path(['app', 'Nova', 'Resource.php'])
@@ -52,6 +59,7 @@ class InstalledWorkbench
             filesystem: $this->files,
             components: $event->components,
             workingPath: $workingDirectory,
+            force: $force,
         ))->handle(
             join_paths($workingDirectory, 'user-resource.stub'),
             $userResource = Workbench::path(['app', 'Nova', 'User.php'])
@@ -61,6 +69,7 @@ class InstalledWorkbench
             filesystem: $this->files,
             components: $event->components,
             workingPath: $workingDirectory,
+            force: $force,
         ))->handle(
             join_paths($workingDirectory, 'NovaServiceProvider.stub'),
             Workbench::path(['app', 'Providers', 'NovaServiceProvider.php'])
@@ -70,6 +79,7 @@ class InstalledWorkbench
             filesystem: $this->files,
             components: $event->components,
             workingPath: $workingDirectory,
+            force: $force,
         ))->handle(
             join_paths($workingDirectory, 'DatabaseSeeder.stub'),
             Workbench::path(['database', 'seeders', 'DatabaseSeeder.php'])
