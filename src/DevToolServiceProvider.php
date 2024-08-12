@@ -10,8 +10,11 @@ use Laravel\Nova\Console\DashboardCommand;
 use Laravel\Nova\Console\FilterCommand;
 use Laravel\Nova\Console\LensCommand;
 use Laravel\Nova\Console\ResourceCommand;
+use Orchestra\Workbench\Console\InstallCommand;
 use Orchestra\Workbench\Events\InstallEnded;
 use Orchestra\Workbench\Events\InstallStarted;
+
+use function Illuminate\Filesystem\join_paths;
 
 class DevToolServiceProvider extends ServiceProvider
 {
@@ -32,6 +35,8 @@ class DevToolServiceProvider extends ServiceProvider
         ]);
 
         if (defined('TESTBENCH_WORKING_PATH')) {
+            InstallCommand::$configurationBaseFile = join_paths(__DIR__, '..', 'stubs', 'testbench.stub');
+
             $this->registerActionCommand();
             $this->registerBaseResourceCommand();
             $this->registerDashboardCommand();

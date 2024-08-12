@@ -8,7 +8,7 @@
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
         "fakerphp/faker": "^1.21",
-        "orchestra/workbench": "^8.8|^9.4",
+        "orchestra/workbench": "^8.9|^9.5",
         "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
@@ -68,9 +68,7 @@
             "@php vendor/bin/pint --ansi",
             "@php vendor/bin/phpstan analyse --verbose --ansi"
         ],
-        "test": [
-            "@php vendor/bin/pest"
-        ],
+        "test": "@php vendor/bin/pest",
         "ci": [
             "@lint",
             "@test"
