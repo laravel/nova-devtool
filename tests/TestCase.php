@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Nova\DevTool\Tests;
+namespace Tests;
 
 use Orchestra\Testbench\Concerns\WithWorkbench;
 

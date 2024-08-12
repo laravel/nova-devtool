@@ -19,7 +19,7 @@ setUp(function ($parent) {
 
 it('can generate action file', function () {
     artisan('nova:action', ['name' => 'Sleep', '--preset' => 'laravel'])
-            ->assertSuccessful();
+        ->assertSuccessful();
 
     $this->assertFileContains([
         'namespace App\Nova\Actions;',

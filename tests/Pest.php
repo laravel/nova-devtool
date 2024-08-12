@@ -1,6 +1,5 @@
 <?php
 
-use Laravel\Nova\DevTool\Tests\TestCase;
 use function Orchestra\Testbench\package_path;
 
 /*
@@ -14,7 +13,7 @@ use function Orchestra\Testbench\package_path;
 |
 */
 
-uses(TestCase::class)->in('Feature');
+uses(Tests\TestCase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +26,6 @@ uses(TestCase::class)->in('Feature');
 |
 */
 
-
 /*
 |--------------------------------------------------------------------------
 | Functions
@@ -39,7 +37,8 @@ uses(TestCase::class)->in('Feature');
 |
 */
 
-function defineTestbenchPackagePath() {
+function defineTestbenchPackagePath()
+{
     if (! defined('TESTBENCH_WORKING_PATH')) {
         define('TESTBENCH_WORKING_PATH', package_path());
     }
