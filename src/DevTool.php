@@ -49,6 +49,6 @@ class DevTool extends Nova
      */
     public static function resourcesInWorkbench()
     {
-        static::resourcesIn(Workbench::path('app/Nova'));
+        static::resourcesIn(Workbench::path(['app', 'Nova']));
     }
 }
