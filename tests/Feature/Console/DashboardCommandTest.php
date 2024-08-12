@@ -1,39 +1,40 @@
 <?php
 
-namespace Laravel\Nova\DevTool\Tests\Feature\Console;
+use Orchestra\Testbench\Concerns\InteractsWithPublishedFiles;
 
-class DashboardCommandTest extends TestCase
-{
-    /**
-     * Stubs files.
-     *
-     * @var array<int, string>|null
-     */
-    protected $files = [
+use function Orchestra\Testbench\Pest\setUp;
+use function Pest\Laravel\artisan;
+
+uses(InteractsWithPublishedFiles::class);
+
+setUp(function ($parent) {
+    defineTestbenchPackagePath();
+
+    $parent();
+
+    $this->files = [
         'app/Nova/Dashboards/*.php',
     ];
+});
 
-    public function test_it_can_generate_dashboard_file()
-    {
-        $this->artisan('nova:dashboard', ['name' => 'Post', '--preset' => 'laravel'])
-            ->assertSuccessful();
+it('can generate dashboard file', function () {
+    artisan('nova:dashboard', ['name' => 'Post', '--preset' => 'laravel'])
+        ->assertSuccessful();
 
-        $this->assertFileContains([
-            'namespace App\Nova\Dashboards;',
-            'use Laravel\Nova\Dashboard;',
-            'class Post extends Dashboard',
-        ], 'app/Nova/Dashboards/Post.php');
-    }
+    $this->assertFileContains([
+        'namespace App\Nova\Dashboards;',
+        'use Laravel\Nova\Dashboard;',
+        'class Post extends Dashboard',
+    ], 'app/Nova/Dashboards/Post.php');
+});
 
-    public function test_it_can_generate_the_main_dashboard_file()
-    {
-        $this->artisan('nova:dashboard', ['name' => 'Main', '--preset' => 'laravel'])
-            ->assertSuccessful();
+it('can generate the main dashboard file', function () {
+    artisan('nova:dashboard', ['name' => 'Main', '--preset' => 'laravel'])
+        ->assertSuccessful();
 
-        $this->assertFileContains([
-            'namespace App\Nova\Dashboards;',
-            'use Laravel\Nova\Dashboards\Main as Dashboard;',
-            'class Main extends Dashboard',
-        ], 'app/Nova/Dashboards/Main.php');
-    }
-}
+    $this->assertFileContains([
+        'namespace App\Nova\Dashboards;',
+        'use Laravel\Nova\Dashboards\Main as Dashboard;',
+        'class Main extends Dashboard',
+    ], 'app/Nova/Dashboards/Main.php');
+});

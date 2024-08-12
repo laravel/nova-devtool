@@ -1,30 +1,32 @@
 <?php
 
-namespace Laravel\Nova\DevTool\Tests\Feature\Console;
+use Orchestra\Testbench\Concerns\InteractsWithPublishedFiles;
 
-class LensCommandTest extends TestCase
-{
-    /**
-     * Stubs files.
-     *
-     * @var array<int, string>|null
-     */
-    protected $files = [
+use function Orchestra\Testbench\Pest\setUp;
+use function Pest\Laravel\artisan;
+
+uses(InteractsWithPublishedFiles::class);
+
+setUp(function ($parent) {
+    defineTestbenchPackagePath();
+
+    $parent();
+
+    $this->files = [
         'app/Nova/Lenses/*.php',
     ];
+});
 
-    public function test_it_can_generate_lens_file()
-    {
-        $this->artisan('nova:lens', ['name' => 'Post', '--preset' => 'laravel'])
-            ->assertSuccessful();
+it('can generate lens file', function () {
+    artisan('nova:lens', ['name' => 'Post', '--preset' => 'laravel'])
+        ->assertSuccessful();
 
-        $this->assertFileContains([
-            'namespace App\Nova\Lenses;',
-            'use Laravel\Nova\Http\Requests\LensRequest;',
-            'use Laravel\Nova\Http\Requests\NovaRequest;',
-            'use Laravel\Nova\Lenses\Lens;',
-            'class Post extends Lens',
-            'public static function query(LensRequest $request, Builder $query): Builder|Paginator',
-        ], 'app/Nova/Lenses/Post.php');
-    }
-}
+    $this->assertFileContains([
+        'namespace App\Nova\Lenses;',
+        'use Laravel\Nova\Http\Requests\LensRequest;',
+        'use Laravel\Nova\Http\Requests\NovaRequest;',
+        'use Laravel\Nova\Lenses\Lens;',
+        'class Post extends Lens',
+        'public static function query(LensRequest $request, Builder $query): Builder|Paginator',
+    ], 'app/Nova/Lenses/Post.php');
+});
