@@ -2,6 +2,7 @@
 
 namespace Laravel\Nova\DevTool\Console\Concerns;
 
+use Illuminate\Support\Arr;
 use Symfony\Component\Process\Process;
 
 trait InteractsWithProcess
@@ -9,9 +10,9 @@ trait InteractsWithProcess
     /**
      * Run the given command as a process.
      */
-    protected function executeCommand(string $command, string $path): void
+    protected function executeCommand(array|string $command, string $path): void
     {
-        $process = Process::fromShellCommandline($command, $path)->setTimeout(null);
+        $process = Process::fromShellCommandline(implode(' && ', Arr::wrap($command)), $path)->setTimeout(null);
 
         if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
             $process->setTty(true);
