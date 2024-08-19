@@ -4,7 +4,7 @@
 
 You can install the Nova tool via Composer:
 
-```bash
+```shell
 composer require --dev laravel/nova-devtool
 ```
 
@@ -14,13 +14,13 @@ composer require --dev laravel/nova-devtool
 
 Laravel Nova Devtool can setup a basic Laravel Nova installation using `workbench` directory via [Orchestra Workbench](https://github.com/orchestral/workbench). To start the installation you can run the following command:
 
-```bash
+```shell
 php vendor/bin/testbench workbench:install --devtool
 ```
 
 Once the installation is completed, you should be able to serve Laravel Nova by running the following command:
 
-```bash
+```shell
 composer run serve
 ```
 
