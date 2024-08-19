@@ -7,12 +7,14 @@ use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\PackageManifest;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 use function Illuminate\Filesystem\join_paths;
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\select;
+use function Orchestra\Testbench\default_skeleton_path;
 use function Orchestra\Testbench\package_path;
 
 #[AsCommand(name: 'nova:devtool', description: 'Configure Laravel Nova DevTool')]
@@ -50,6 +52,14 @@ class DevToolCommand extends Command implements PromptsForMissingInput
      */
     protected function installNpmDependencies(Filesystem $filesystem, PackageManifest $manifest): int
     {
+        $novaTailwindConfigFile = join_paths($manifest->vendorPath, 'laravel', 'nova', 'tailwind.config.js');
+
+        if (str_starts_with($novaTailwindConfigFile, default_skeleton_path())) {
+            $novaTailwindConfigFile = './'.ltrim(Str::after($novaTailwindConfigFile, default_skeleton_path()), DIRECTORY_SEPARATOR);
+        } elseif (str_starts_with($novaTailwindConfigFile, package_path())) {
+            $novaTailwindConfigFile = './'.ltrim(Str::after($novaTailwindConfigFile, package_path()), DIRECTORY_SEPARATOR);
+        }
+
         $dependencies = multiselect(
             label: 'Dependencies to install?',
             options: ['axios', 'lodash', 'tailwindcss', 'vue'],
@@ -68,8 +78,13 @@ class DevToolCommand extends Command implements PromptsForMissingInput
         ], package_path());
 
         if (in_array('tailwindcss', $dependencies)) {
-            // 1. Add postcss.config.js
-            // 2. Add tailwind.config.js
+            $filesystem->copy(join_paths(__DIR__, 'stubs', 'postcss.config.js'), package_path('postcss.config.js'));
+            $filesystem->copy(join_paths(__DIR__, 'stubs', 'tailwind.config.js'), package_path('tailwind.config.js'));
+            $filesystem->replaceInFile([
+                '{{novaTailwindConfigFile}}',
+            ], [
+                str_replace(DIRECTORY_SEPARATOR, '/', $novaTailwindConfigFile)
+            ], package_path('tailwind.config.js'));
         }
 
         return self::SUCCESS;
