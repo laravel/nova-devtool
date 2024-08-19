@@ -4,9 +4,9 @@ namespace Laravel\Nova\DevTool\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
+use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\PackageManifest;
-use Illuminate\Contracts\Console\PromptsForMissingInput;
 use InvalidArgumentException;
 use Symfony\Component\Console\Attribute\AsCommand;
 
@@ -130,7 +130,7 @@ class DevToolCommand extends Command implements PromptsForMissingInput
     /**
      * Prompt for missing input arguments using the returned questions.
      *
-     * @return array<string, string>
+     * @return array<string, \Closure>
      */
     protected function promptForMissingArgumentsUsing(): array
     {
