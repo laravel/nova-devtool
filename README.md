@@ -34,3 +34,19 @@ workbench:
 + user: nova@laravel.com
   build:
 ```
+
+### Enables Vue DevTool for Laravel Nova
+
+By default, Laravel Nova ship with JavaScript compiled for production without Vue DevTool. In order to enable Vue DevTool, you need to run the following command:
+
+```shell
+php vendor/bin/testbench nova:devtool-enable
+```
+
+### Disables Vue DevTool for Laravel Nova
+
+To reverse the above action, you need to run the following command:
+
+```shell
+php vendor/bin/testbench nova:devtool-disable
+```
