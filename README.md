@@ -35,12 +35,20 @@ workbench:
   build:
 ```
 
+### Install Axios, Lodash, Tailwind CSS or Vue
+
+To simplify the installation, you can run the following commnad:
+
+```shell
+php vendor/bin/testbench nova:devtool install
+```
+
 ### Enables Vue DevTool for Laravel Nova
 
 By default, Laravel Nova ship with JavaScript compiled for production without Vue DevTool. In order to enable Vue DevTool, you need to run the following command:
 
 ```shell
-php vendor/bin/testbench nova:devtool-enable
+php vendor/bin/testbench nova:devtool enable-vue-devtool
 ```
 
 ### Disables Vue DevTool for Laravel Nova
@@ -48,5 +56,5 @@ php vendor/bin/testbench nova:devtool-enable
 To reverse the above action, you need to run the following command:
 
 ```shell
-php vendor/bin/testbench nova:devtool-disable
+php vendor/bin/testbench nova:devtool disable-vue-devtool
 ```
