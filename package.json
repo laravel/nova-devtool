@@ -11,6 +11,7 @@
   },
   "peerDependencies": {
     "axios": "^1.7.4",
+    "lodash": "^4.17.21",
     "tailwindcss": "^3.4.10",
     "vue": "^3.4.38"
   }
