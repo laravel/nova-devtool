@@ -1,6 +1,6 @@
 preset: package
 
-namespace: NovaKit\NovaDevTool
+namespace: Laravel\Nova\DevTool
 
 paths:
   src: src
@@ -14,16 +14,16 @@ migration:
   prefix: ''
 
 console:
-  namespace: NovaKit\NovaDevTool\Console
+  namespace: Laravel\Nova\DevTool\Console
 
 model:
-  namespace: NovaKit\NovaDevTool\Models
+  namespace: Laravel\Nova\DevTool\Models
 
 provider:
-  namespace: NovaKit\NovaDevTool
+  namespace: Laravel\Nova\DevTool
 
 testing:
-  namespace: NovaKit\NovaDevTool\Tests
+  namespace: Laravel\Nova\DevTool\Tests
 
 generators:
   - Orchestra\Canvas\Commands\ConsoleGenerator
