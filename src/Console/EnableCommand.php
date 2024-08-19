@@ -8,7 +8,9 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\PackageManifest;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'nova:devtool-enable', description: 'Enable Vue DevTool on Laravel Nova')]
+use function Illuminate\Filesystem\join_paths;
+
+#[AsCommand(name: 'nova:devtool-enable', description: 'Enable Vue DevTool on Laravel Nova', hidden: true)]
 class EnableCommand extends Command
 {
     use Concerns\InteractsWithProcess;
@@ -19,25 +21,27 @@ class EnableCommand extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(Filesystem $filesystem, PackageManifest $manifest)
     {
         if (! $this->confirmToProceed()) {
             return self::FAILURE;
         }
 
-        $filesystem = new Filesystem;
-        $manifest = $this->laravel->make(PackageManifest::class);
-        $novaVendorPath = $manifest->vendorPath.'/laravel/nova';
+        $novaVendorPath = join_paths($manifest->vendorPath, 'laravel', 'nova');
 
-        if (! $filesystem->isDirectory("{$novaVendorPath}/public-cached")) {
-            $filesystem->makeDirectory("{$novaVendorPath}/public-cached");
+        $publicPath = join_paths($novaVendorPath, 'public');
+        $publicCachePath = join_paths($novaVendorPath, 'public-cached');
+        $webpackFile = join_paths($novaVendorPath, 'webpack.mix.js');
 
-            $filesystem->copyDirectory("{$novaVendorPath}/public", "{$novaVendorPath}/public-cached");
-            $filesystem->put("{$novaVendorPath}/public-cached/.gitignore", '*');
+        if (! $filesystem->isDirectory($publicCachePath)) {
+            $filesystem->makeDirectory($publicCachePath);
+
+            $filesystem->copyDirectory($publicPath, $publicCachePath);
+            $filesystem->put(join_paths($publicCachePath, '.gitignore'), '*');
         }
 
-        if (! $filesystem->isFile("{$novaVendorPath}/webpack.mix.js")) {
-            $filesystem->copy("{$novaVendorPath}/webpack.mix.js.dist", "{$novaVendorPath}/webpack.mix.js");
+        if (! $filesystem->isFile($webpackFile)) {
+            $filesystem->copy("{$webpackFile}.dist", $webpackFile);
         }
 
         $this->executeCommand('npm set progress=false && npm ci', $novaVendorPath);

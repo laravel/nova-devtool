@@ -8,7 +8,9 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\PackageManifest;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'nova:devtool-disable', description: 'Disable Vue DevTool on Laravel Nova')]
+use function Illuminate\Filesystem\join_paths;
+
+#[AsCommand(name: 'nova:devtool-disable', description: 'Disable Vue DevTool on Laravel Nova', hidden: true)]
 class DisableCommand extends Command
 {
     use ConfirmableTrait;
@@ -18,24 +20,25 @@ class DisableCommand extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(Filesystem $filesystem, PackageManifest $manifest)
     {
         if (! $this->confirmToProceed()) {
             return self::FAILURE;
         }
 
-        $filesystem = new Filesystem;
-        $manifest = $this->laravel->make(PackageManifest::class);
-        $novaVendorPath = $manifest->vendorPath.'/laravel/nova';
+        $novaVendorPath = join_paths($manifest->vendorPath, 'laravel', 'nova');
 
-        if ($filesystem->isDirectory("{$novaVendorPath}/public-cached")) {
-            if ($filesystem->isDirectory("{$novaVendorPath}/public")) {
-                $filesystem->deleteDirectory("{$novaVendorPath}/public");
+        $publicPath = join_paths($novaVendorPath, 'public');
+        $publicCachePath = join_paths($novaVendorPath, 'public-cached');
+
+        if ($filesystem->isDirectory($publicCachePath)) {
+            if ($filesystem->isDirectory($publicPath)) {
+                $filesystem->deleteDirectory($publicPath);
             }
 
-            $filesystem->delete("{$novaVendorPath}/public-cached/.gitignore");
-            $filesystem->copyDirectory("{$novaVendorPath}/public-cached", "{$novaVendorPath}/public");
-            $filesystem->deleteDirectory("{$novaVendorPath}/public-cached");
+            $filesystem->delete(join_paths($publicCachePath, '.gitignore'));
+            $filesystem->copyDirectory($publicCachePath, $publicPath);
+            $filesystem->deleteDirectory($publicCachePath);
         }
 
         $this->call('vendor:publish', ['--tag' => 'nova-assets', '--force' => true]);
