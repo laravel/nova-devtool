@@ -30,8 +30,7 @@ class DevToolServiceProvider extends ServiceProvider
         }
 
         $this->commands([
-            Console\EnableCommand::class,
-            Console\DisableCommand::class,
+            Console\DevToolCommand::class,
         ]);
 
         if (defined('TESTBENCH_WORKING_PATH')) {
@@ -45,8 +44,6 @@ class DevToolServiceProvider extends ServiceProvider
             $this->registerResourceCommand();
 
             $this->commands([
-                Console\EnableCommand::class,
-                Console\DisableCommand::class,
                 Console\ActionCommand::class,
                 Console\BaseResourceCommand::class,
                 Console\DashboardCommand::class,
