@@ -67,6 +67,11 @@ class DevToolCommand extends Command implements PromptsForMissingInput
             'npm install --dev '.implode(' ', $dependencies),
         ], package_path());
 
+        if (in_array('tailwindcss', $dependencies)) {
+            // 1. Add postcss.config.js
+            // 2. Add tailwind.config.js
+        }
+
         return self::SUCCESS;
     }
 
