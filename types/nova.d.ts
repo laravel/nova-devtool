@@ -10,17 +10,18 @@ import type { Menu } from './menu'
 
 type State = {
   baseUri: string;
-  currentUser: any;
+  currentUser: string | number | null;
   mainMenu: any[];
   userMenu: any[];
-  resources: any[];
+  resources: Resource[];
   version: string;
   mainMenuShown: boolean;
   canLeaveForm: boolean;
   canLeaveModal: boolean;
   pushStateWasTriggered: boolean;
   validLicense: true;
-  [key: string]: any;
+  queryStringParams: {[key: string]: any};
+  compiledQueryStringParams: string;
 }
 
 type BootingCallback = ((app: VueApp, store: Store<State>) => void);
