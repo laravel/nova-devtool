@@ -3,6 +3,7 @@
   "description": "Laravel Nova DevTool",
   "types": "types/index.d.ts",
   "devDependencies": {
+    "@babel/preset-typescript": "^7.24.7",
     "@inertiajs/vue3": "^1.0.0",
     "axios": "^1.7.4",
     "lodash": "^4.17.21",

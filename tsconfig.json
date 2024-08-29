@@ -1,10 +1,13 @@
 {
   // Change this to match your project
   "include": [
-    "vendor/laravel/nova/resources/js/app.js",
     "vendor/laravel/nova/resources/js/util/FormValidation.js",
-    "vendor/laravel/nova/resources/js/nova.js",
-    "vendor/laravel/nova/resources/js/types.d.ts"
+    "vendor/laravel/nova/resources/js/nova.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "vendor/laravel/nova/node_modules",
+    "vendor/laravel/nova/ui/node_modules"
   ],
   "compilerOptions": {
     // Tells TypeScript to read JS files, as

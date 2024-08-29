@@ -1,6 +1,6 @@
 /**
- * @param {VueApp} app
+ * @param {NovaApp} app
  */
-export function registerFields(app: VueApp): void;
-export type VueApp = import("vue").App;
+export function registerFields(app: NovaApp): void;
+export type NovaApp = import("./nova").default;
 //# sourceMappingURL=fields.d.ts.map

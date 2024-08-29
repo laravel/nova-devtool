@@ -7,7 +7,7 @@
  * @typedef {import('axios').AxiosRequestConfig} AxiosRequestConfig
  * @typedef {Object<string, any>} AppConfig
  * @typedef {import('./util/FormValidation').Form} Form
- * @typedef {(app: VueApp, store: VueStore<any>) => void} BootingCallback
+ * @typedef {(app: VueApp, store: VueStore) => void} BootingCallback
  */
 export default class Nova {
     /**
@@ -16,9 +16,9 @@ export default class Nova {
     constructor(config: AppConfig);
     /**
      * @protected
-     * @type {BootingCallback[]}
+     * @type {Array<BootingCallback>}
      */
-    protected bootingCallbacks: BootingCallback[];
+    protected bootingCallbacks: Array<BootingCallback>;
     /** @readonly */
     readonly appConfig: {
         [x: string]: any;
@@ -41,7 +41,8 @@ export default class Nova {
     public $progress: any;
     /** @public */
     public $router: import("@inertiajs/core").Router;
-    $testing: {
+    /** @readonly */
+    readonly $testing: {
         timezone: (timezone: any) => void;
     };
     /**
@@ -55,8 +56,8 @@ export default class Nova {
      * Execute all of the booting callbacks.
      */
     boot(): void;
-    /** @type {VueStore<any>} */
-    store: VueStore<any>;
+    /** @type {VueStore} */
+    store: VueStore;
     /**
      * @param {BootingCallback} callback
      */
@@ -266,5 +267,5 @@ export type AppConfig = {
     [x: string]: any;
 };
 export type Form = import("./util/FormValidation").Form;
-export type BootingCallback = (app: VueApp, store: VueStore<any>) => void;
+export type BootingCallback = (app: VueApp, store: VueStore) => void;
 //# sourceMappingURL=nova.d.ts.map
