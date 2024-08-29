@@ -98,7 +98,7 @@ declare module 'laravel-nova' {
   export namespace Localization {
     namespace methods {
       function __(key: string, replace: {
-        [key: string]: value;
+        [key: string]: string;
       }): string;
     }
   }
@@ -110,7 +110,7 @@ declare module 'laravel-nova' {
     namespace computed {
       function metricEndpoint(): string;
       function metricPayload(): {
-          [key: string]: value;
+          [key: string]: any;
       };
     }
   }
