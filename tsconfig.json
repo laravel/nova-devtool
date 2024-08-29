@@ -1,6 +1,8 @@
 {
   // Change this to match your project
   "include": [
+    "vendor/laravel/nova/resources/js/mixins/packages.js",
+    "vendor/laravel/nova/resources/js/util/index.js",
     "vendor/laravel/nova/resources/js/util/FormValidation.js",
     "vendor/laravel/nova/resources/js/nova.js"
   ],
