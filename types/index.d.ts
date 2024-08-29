@@ -1,4 +1,8 @@
-import type { Menu } from './menu'
+import type { 
+  App as VueApp,
+  Component as VueComponent 
+} from 'vue'
+type Menu = import('./menu').Menu
 
 type BootingCallback = ((app: any, store: any) => void);
 
@@ -62,7 +66,7 @@ type Translations = {
 
 export declare type NovaApp = {
   $router: import('@inertiajs/core').Router;
-  app: import('vue').App<Element>;
+  app: VueApp;
   appConfig: AppConfig;
   mountTo: Element;
   store: import('vuex').Store<any>;
@@ -70,12 +74,13 @@ export declare type NovaApp = {
   booting: (callback: BootingCallback) => void;
   config: (key: string|null) => any;
   countdown(): Promise<void>;
+  inertia: (name: string, component: VueComponent | string) => void;
+  liftOff: () => void;
   request: (options: Object) => import('axios').AxiosInstance;
-  liftOff(): void;
 }
 
 declare global {
   interface Window {
-    Nova: NovaApp    
+    Nova: NovaApp;
   }
 }
