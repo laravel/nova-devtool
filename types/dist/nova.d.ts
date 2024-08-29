@@ -4,6 +4,7 @@
  * @typedef {import('vue').Component} VueComponent
  * @typedef {import('vue').DefineComponent} DefineComponent
  * @typedef {import('axios').AxiosInstance} AxiosInstance
+ * @typedef {import('axios').AxiosRequestConfig} AxiosRequestConfig
  * @typedef {Object<string, any>} AppConfig
  * @typedef {import('./util/FormValidation').Form} Form
  * @typedef {(app: VueApp, store: VueStore<any>) => void} BootingCallback
@@ -95,10 +96,10 @@ export default class Nova {
      * Return an axios instance configured to make requests to Nova's API
      * and handle certain response codes.
      *
-     * @param {any} options
+     * @param {AxiosRequestConfig|null} [options=null]
      * @returns {AxiosInstance}
      */
-    request(options: any): AxiosInstance;
+    request(options?: AxiosRequestConfig | null): AxiosInstance;
     /**
      * Get the URL from base Nova prefix.
      *
@@ -260,6 +261,7 @@ export type VueApp = import("vue").App;
 export type VueComponent = import("vue").Component;
 export type DefineComponent = import("vue").DefineComponent;
 export type AxiosInstance = import("axios").AxiosInstance;
+export type AxiosRequestConfig = import("axios").AxiosRequestConfig;
 export type AppConfig = {
     [x: string]: any;
 };
