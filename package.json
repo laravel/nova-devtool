@@ -1,7 +1,7 @@
 {
   "name": "laravel-nova-devtool",
   "description": "Laravel Nova DevTool",
-  "types": "types/index.d.ts",
+  "types": "types/nova.d.ts",
   "devDependencies": {
     "@inertiajs/vue3": "^1.0.0",
     "axios": "^1.7.4",
