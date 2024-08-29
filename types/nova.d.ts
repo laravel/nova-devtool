@@ -1,6 +1,7 @@
 import type { 
   App as VueApp,
-  Component as VueComponent 
+  Component as VueComponent,
+  DefineComponent
 } from 'vue'
 import type { Router } from '@inertiajs/core'
 import type { AxiosInstance } from 'axios'
@@ -11,15 +12,15 @@ import type { Menu } from './menu'
 type State = {
   baseUri: string;
   currentUser: string | number | null;
-  mainMenu: any[];
-  userMenu: any[];
+  mainMenu: Menu[];
+  userMenu: Menu[];
   resources: Resource[];
   version: string;
   mainMenuShown: boolean;
   canLeaveForm: boolean;
   canLeaveModal: boolean;
   pushStateWasTriggered: boolean;
-  validLicense: true;
+  validLicense: boolean;
   queryStringParams: {[key: string]: any};
   compiledQueryStringParams: string;
 }
@@ -86,7 +87,7 @@ type Translations = {
 }
 
 export declare type NovaApp = {
-  pages: {[key: string]: VueComponent | string};
+  pages: {[key: string]: VueComponent | DefineComponent};
   $router: Router;
   readonly appConfig: AppConfig;
   store: Store<State>;
@@ -105,10 +106,10 @@ export declare type NovaApp = {
 
   request: (options: Object) => AxiosInstance;
 
-  inertia: (name: string, component: VueComponent | string) => void;
+  inertia: (name: string, component: VueComponent | DefineComponent) => void;
   visit: (path: ({ url: string; remote: boolean; } | string), options?: Object) => void;
 
-  component: (name: string, component: VueComponent | string) => void;
+  component: (name: string, component: VueComponent | DefineComponent) => void;
   hasComponent: (name: string) => boolean;
 
   debug: (message: any, type?: string) => void;
@@ -129,6 +130,7 @@ export declare type NovaApp = {
 
 declare global {
   interface Window {
+    createNovaApp: (config: AppConfig) => NovaApp;
     Nova: NovaApp;
   }
 }

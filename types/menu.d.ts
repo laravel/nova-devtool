@@ -6,7 +6,7 @@ type Badge = {
 export type Menu = {
   key: string;
   name: string;
-  component: "menu-section" | "menu-group" | "menu-item";
+  component: 'menu-section' | 'menu-group' | 'menu-item';
   items: (Menu | MenuItem)[];
   collapsable: boolean;
   icon: string;
