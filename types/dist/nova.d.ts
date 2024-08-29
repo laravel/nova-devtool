@@ -1,9 +1,12 @@
 /**
+ * @typedef {import('vuex').Store} VueStore
+ * @typedef {import('vue').App} VueApp
  * @typedef {import('vue').Component} VueComponent
  * @typedef {import('vue').DefineComponent} DefineComponent
  * @typedef {import('axios').AxiosInstance} AxiosInstance
  * @typedef {Object<string, any>} AppConfig
  * @typedef {import('./util/FormValidation').Form} Form
+ * @typedef {(app: VueApp, store: VueStore<any>) => void} BootingCallback
  */
 export default class Nova {
     /**
@@ -12,9 +15,9 @@ export default class Nova {
     constructor(config: AppConfig);
     /**
      * @protected
-     * @type {Function[]}
+     * @type {BootingCallback[]}
      */
-    protected bootingCallbacks: Function[];
+    protected bootingCallbacks: BootingCallback[];
     /** @readonly */
     readonly appConfig: {
         [x: string]: any;
@@ -44,23 +47,27 @@ export default class Nova {
      * Register a callback to be called before Nova starts. This is used to bootstrap
      * addons, tools, custom fields, or anything else Nova needs
      *
-     * @param {Function} callback
+     * @param {BootingCallback} callback
      */
-    booting(callback: Function): void;
+    booting(callback: BootingCallback): void;
     /**
      * Execute all of the booting callbacks.
      */
     boot(): void;
-    store: import("vuex").Store<any>;
+    /** @type {VueStore<any>} */
+    store: VueStore<any>;
     /**
-     * @param {Function} callback
+     * @param {BootingCallback} callback
      */
-    booted(callback: Function): void;
+    booted(callback: BootingCallback): void;
     countdown(): Promise<void>;
     /** @protected */
     protected mountTo: Element;
-    /** @protected */
-    protected app: import("vue").App<Element>;
+    /**
+     * @protected
+     * @type VueApp
+     */
+    protected app: VueApp;
     /**
      * Start the Nova app by calling each of the tool's callbacks and then creating
      * the underlying Vue instance.
@@ -248,6 +255,8 @@ export default class Nova {
     } | string, options?: any): void;
     applyTheme(): void;
 }
+export type VueStore = import("vuex").Store<any>;
+export type VueApp = import("vue").App;
 export type VueComponent = import("vue").Component;
 export type DefineComponent = import("vue").DefineComponent;
 export type AxiosInstance = import("axios").AxiosInstance;
@@ -255,4 +264,5 @@ export type AppConfig = {
     [x: string]: any;
 };
 export type Form = import("./util/FormValidation").Form;
+export type BootingCallback = (app: VueApp, store: VueStore<any>) => void;
 //# sourceMappingURL=nova.d.ts.map

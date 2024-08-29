@@ -1,9 +1,9 @@
 /**
- * @typedef {import('vue').App} VueApp
+ * @typedef {import('./nova').default} NovaApp
  */
 /**
- * @param {VueApp} app
+ * @param {NovaApp} app
  */
-export function registerViews(app: VueApp): void;
-export type VueApp = import("vue").App;
+export function registerViews(app: NovaApp): void;
+export type NovaApp = import("./nova").default;
 //# sourceMappingURL=components.d.ts.map
