@@ -1,6 +1,6 @@
 import type { AxiosInstance, AxiosResponse } from 'axios'
 
-export type FormData = {
+export type FormDataPayload = {
   [key: string]: any;
 }
 
@@ -12,7 +12,7 @@ type FormOptions = {
 }
 
 export declare type Form = {
-  create: (data?: FormData) => Form;
+  create: (data?: FormDataPayload) => Form;
 
   processing: boolean;
   successful: boolean;
@@ -33,16 +33,16 @@ export declare type Form = {
   hasFilesDeep: (object: any | any[]) => boolean;
 
   clear: () => void;
-  data: () => FormData;
-  only: (fields: any[]) => FormData;
-  populate: (data: FormData) => Form;
+  data: () => FormDataPayload;
+  only: (fields: any[]) => FormDataPayload;
+  populate: (data: FormDataPayload) => Form;
   reset: () => void;
-  setInitialValues: (values: FormData) => void;
+  setInitialValues: (values: FormDataPayload) => void;
 
   onFail: (error: AxiosResponse) => void;
   onSuccess: (data: any) => void;
 
-  withData: (data: FormData) => Form;
+  withData: (data: FormDataPayload) => Form;
   withErrors: (errors: ErrorCollection) => Form;
   withOptions: (options: FormOptions) => Form;
 
