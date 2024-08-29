@@ -1,7 +1,7 @@
 declare module 'laravel-nova-util' {
-  export type filled = (values: any) => boolean;
-  export type hourCycle = (locale: string) => number;
-  export type increaseOrDecrease = (currentValue: number, startingValue: number) => boolean | null;
-  export type minimum = (originalPromise: Promise<any>, delay?: number) => Promise<any>;
-  export type singularOrPlural = (value: number, suffix: any) => string;
+  export function filled(value: any): boolean;
+  export function hourCycle(locale: string): number;
+  export function increaseOrDecrease(currentValue: number, startingValue: number): boolean | null;
+  export function minimum(originalPromise: Promise<any>, delay?: number): Promise<any>;
+  export function singularOrPlural(value: number, suffix: any): string;
 }
