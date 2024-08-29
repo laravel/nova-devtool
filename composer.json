@@ -13,7 +13,7 @@
     },
     "require-dev": {
         "larastan/larastan": "^2.4",
-        "laravel/nova": "^5.0",
+        "laravel/nova": "dev-5/ts as 5.0.0",
         "laravel/pint": "^1.17",
         "orchestra/pest-plugin-testbench": "^2.0",
         "orchestra/testbench": "^8.24|^9.2",
@@ -34,8 +34,8 @@
     },
     "repositories": [
         {
-            "type": "artifact",
-            "url": "artifacts"
+            "type": "vcs",
+            "url": "https://github.com/laravel/nova"
         }
     ],
     "config": {
