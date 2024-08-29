@@ -1,6 +1,7 @@
 {
   "name": "laravel-nova-devtool",
   "description": "Laravel Nova DevTool",
+  "types": "types/index.d.ts",
   "dependencies": {
     "@vue/compiler-sfc": "^3.4.38",
     "autoprefixer": "^10.4.20",
@@ -11,9 +12,11 @@
     "vue-loader": "^16.8.3"
   },
   "peerDependencies": {
+    "@inertiajs/vue3": "^1.0.0",
     "axios": "^1.7.4",
     "lodash": "^4.17.21",
     "tailwindcss": "^3.4.10",
-    "vue": "^3.4.38"
+    "vue": "^3.4.38",
+    "vuex": "^4.0.2"
   }
 }
