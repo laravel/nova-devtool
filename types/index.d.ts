@@ -12,8 +12,5 @@ declare global {
   interface Window {
     createNovaApp: (config: AppConfig) => Nova;
     Nova: Nova;
-    LaravelNovaUtil: {
-      filled, hourCycle, increaseOrDecrease, minimum, singularOrPlural
-    };
   }
 }
