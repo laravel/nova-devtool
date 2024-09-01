@@ -76,3 +76,17 @@ transform([
      * Register any application services.
 "
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/stubs/NovaServiceProvider.stub"));
+
+Symfony\Component\Process\Process::fromShellCommandline(
+    'npx -p typescript tsc', $workingPath
+)->mustRun();
+
+$files->ensureDirectoryExists("{$workingPath}/types/@types/laravel-nova-ui");
+
+Illuminate\Support\Collection::make([
+    ...$files->glob("{$workingPath}/vendor/laravel/nova/resources/types/components/*"),
+])->flatten()
+->filter(fn ($file) => is_file($file))
+->each(function ($file) use ($files, $workingPath) {
+    $files->copy($file, "{$workingPath}/types/@types/laravel-nova-ui".Illuminate\Support\Str::after($file, "{$workingPath}/vendor/laravel/nova/resources/types/components"));
+});
