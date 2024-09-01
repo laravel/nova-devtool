@@ -58,8 +58,8 @@ declare const _default: import("vue").DefineComponent<{
     trailingIcon: {};
 }>>, {
     size: string;
-    variant: string;
     disabled: boolean;
+    variant: string;
     as: string;
     state: string;
     padding: string;

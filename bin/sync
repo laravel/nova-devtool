@@ -77,9 +77,37 @@ transform([
 "
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/stubs/NovaServiceProvider.stub"));
 
-Symfony\Component\Process\Process::fromShellCommandline(
-    'npx -p typescript tsc', $workingPath
-)->mustRun();
+if (! $files->isFile("{$workingPath}/vendor/laravel/nova/webpack.mix.js")) {
+    $files->copy("{$workingPath}/vendor/laravel/nova/webpack.mix.js.dist", "{$workingPath}/vendor/laravel/nova/webpack.mix.js");
+}
+
+Illuminate\Support\Collection::make([
+    'npm ci',
+    'npm run prod',
+])->each(function ($command) use ($workingPath) {
+    tap(
+        Symfony\Component\Process\Process::fromShellCommandline($command, "{$workingPath}/vendor/laravel/nova"),
+        function ($process) {
+            $process->setTty(true);
+            $process->setTimeout(3600);
+            $process->mustRun();
+        }
+    );
+});
+
+Illuminate\Support\Collection::make([
+    'npm ci',
+    'npx -p typescript tsc',
+])->each(function ($command) use ($workingPath) {
+    tap(
+        Symfony\Component\Process\Process::fromShellCommandline($command, $workingPath),
+        function ($process) {
+            $process->setTty(true);
+            $process->setTimeout(3600);
+            $process->mustRun();
+        }
+    );
+});
 
 $files->ensureDirectoryExists("{$workingPath}/types/@types/laravel-nova-ui");
 
