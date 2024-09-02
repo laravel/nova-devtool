@@ -8,6 +8,12 @@ You can install the Nova tool via Composer:
 composer require --dev laravel/nova-devtool
 ```
 
+Once installed, you can run the following to update NPM's `package.json`:
+
+```shell
+npm install --save-dev "vendor/laravel/nova-devtool"
+```
+
 ## Usages
 
 ### Setup Laravel Nova Workbench
