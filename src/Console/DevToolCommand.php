@@ -85,7 +85,7 @@ class DevToolCommand extends Command implements PromptsForMissingInput
             $filesystem->replaceInFile([
                 '{{novaTailwindConfigFile}}',
             ], [
-                str_replace(DIRECTORY_SEPARATOR, '/', $novaTailwindConfigFile)
+                str_replace(DIRECTORY_SEPARATOR, '/', $novaTailwindConfigFile),
             ], package_path('tailwind.config.js'));
         }
 
