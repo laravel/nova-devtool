@@ -24,4 +24,3 @@ declare namespace _default {
     }
 }
 export default _default;
-//# sourceMappingURL=PreventsModalAbandonment.d.ts.map

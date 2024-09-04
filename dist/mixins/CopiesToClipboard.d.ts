@@ -10,4 +10,3 @@ declare namespace mixin {
         function copyValueToClipboard(value: string): void;
     }
 }
-//# sourceMappingURL=CopiesToClipboard.d.ts.map

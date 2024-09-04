@@ -268,4 +268,3 @@ export type AppConfig = {
 };
 export type Form = import("./util/FormValidation").Form;
 export type BootingCallback = (app: VueApp, store: VueStore) => void;
-//# sourceMappingURL=nova.d.ts.map

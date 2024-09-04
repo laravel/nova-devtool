@@ -47,4 +47,3 @@ declare namespace _default {
     }
 }
 export default _default;
-//# sourceMappingURL=HandlesFieldAttachments.d.ts.map

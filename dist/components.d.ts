@@ -6,4 +6,3 @@
  */
 export function registerViews(app: NovaApp): void;
 export type NovaApp = import("./nova").default;
-//# sourceMappingURL=components.d.ts.map

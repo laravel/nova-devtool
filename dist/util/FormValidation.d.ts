@@ -218,4 +218,3 @@ export type FormOptions = {
 export type ErrorCollection = {
     [key: string]: string[];
 };
-//# sourceMappingURL=FormValidation.d.ts.map

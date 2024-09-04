@@ -4,4 +4,3 @@
  * @returns {string}
  */
 export default function __(key: string, replace: string): string;
-//# sourceMappingURL=localization.d.ts.map

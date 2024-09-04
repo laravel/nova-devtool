@@ -8,4 +8,3 @@ export function useLocalization(): {
         [key: string]: string;
     }) => string;
 };
-//# sourceMappingURL=useLocalization.d.ts.map

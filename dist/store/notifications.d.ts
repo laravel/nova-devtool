@@ -39,4 +39,3 @@ declare namespace _default {
     }
 }
 export default _default;
-//# sourceMappingURL=notifications.d.ts.map

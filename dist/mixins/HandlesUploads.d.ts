@@ -15,4 +15,3 @@ declare namespace _default {
     }
 }
 export default _default;
-//# sourceMappingURL=HandlesUploads.d.ts.map

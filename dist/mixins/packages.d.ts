@@ -16,4 +16,3 @@ export { default as HandlesPanelVisibility } from "./HandlesPanelVisibility";
 export { Errors } from "../util/FormValidation";
 export { useLocalization } from "../composables/useLocalization";
 export { default as CopiesToClipboard, useCopyValueToClipboard } from "./CopiesToClipboard";
-//# sourceMappingURL=packages.d.ts.map
