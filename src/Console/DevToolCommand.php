@@ -115,7 +115,7 @@ class DevToolCommand extends Command implements PromptsForMissingInput
         }
 
         $this->executeCommand(['npm set progress=false', 'npm ci'], $novaVendorPath);
-        $filesystem->put("{$novaVendorPath}/node_modules/.gitignore", '*');
+        $filesystem->put(join_paths($novaVendorPath, 'node_modules', '.gitignore'), '*');
 
         $this->executeCommand(['npm set progress=false', 'npm run dev'], $novaVendorPath);
 
