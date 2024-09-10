@@ -34,8 +34,8 @@
     },
     "repositories": [
         {
-            "type": "path",
-            "url": "~/Projects/laravel/nova/aries"
+            "type": "artifact",
+            "url": "artifacts"
         }
     ],
     "config": {
