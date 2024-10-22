@@ -1,6 +1,7 @@
 <?php
 
 use Laravel\Nova\DevTool\DevTool;
+use Workbench\App;
 
 it('can detect resources within workbench', function () {
     DevTool::resourcesInWorkbench();
@@ -8,6 +9,6 @@ it('can detect resources within workbench', function () {
     expect(DevTool::resourceCollection()->all())
         ->toBeArray()
         ->toBe([
-            \Workbench\App\Nova\User::class,
+            App\Nova\User::class,
         ]);
 });

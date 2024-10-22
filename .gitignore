@@ -1,5 +1,4 @@
 # Composer
-/artifacts/*
 /vendor/*
 /composer.lock
 /auth.json
