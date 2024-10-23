@@ -7,6 +7,9 @@ use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
+/**
+ * @see Laravel\Nova\Console\ResourceCommand
+ */
 #[AsCommand(name: 'nova:resource', description: 'Create a new resource class')]
 class ResourceCommand extends Command
 {

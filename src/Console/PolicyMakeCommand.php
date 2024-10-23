@@ -2,16 +2,16 @@
 
 namespace Laravel\Nova\DevTool\Console;
 
-use Laravel\Nova\Console\LensCommand as Command;
+use Laravel\Nova\Console\PolicyMakeCommand as Command;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see Laravel\Nova\Console\LensCommand
+ * @see Laravel\Nova\Console\PolicyMakeCommand
  */
-#[AsCommand(name: 'nova:lens', description: 'Create a new lens class')]
-class LensCommand extends Command
+#[AsCommand(name: 'nova:policy', description: 'Create a new policy class')]
+class PolicyMakeCommand extends Command
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;

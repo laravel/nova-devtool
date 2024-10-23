@@ -9,11 +9,11 @@ use Laravel\Nova\Console\BaseResourceCommand;
 use Laravel\Nova\Console\DashboardCommand;
 use Laravel\Nova\Console\FilterCommand;
 use Laravel\Nova\Console\LensCommand;
+use Laravel\Nova\Console\PolicyMakeCommand;
 use Laravel\Nova\Console\ResourceCommand;
 use Orchestra\Workbench\Events\InstallEnded;
 use Orchestra\Workbench\Events\InstallStarted;
 use Orchestra\Workbench\Workbench;
-
 use function Illuminate\Filesystem\join_paths;
 
 class DevToolServiceProvider extends ServiceProvider
@@ -42,6 +42,7 @@ class DevToolServiceProvider extends ServiceProvider
             $this->registerDashboardCommand();
             $this->registerFilterCommand();
             $this->registerLensCommand();
+            $this->registerPolicyMakeCommand();
             $this->registerResourceCommand();
 
             $this->commands([
@@ -50,13 +51,14 @@ class DevToolServiceProvider extends ServiceProvider
                 Console\DashboardCommand::class,
                 Console\FilterCommand::class,
                 Console\LensCommand::class,
+                Console\PolicyMakeCommand::class,
                 Console\ResourceCommand::class,
             ]);
         }
     }
 
     /**
-     * Register the command.
+     * Register the `nova:action` command.
      *
      * @return void
      */
@@ -68,7 +70,7 @@ class DevToolServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the command.
+     * Register the `nova:dashboard` command.
      *
      * @return void
      */
@@ -80,7 +82,7 @@ class DevToolServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the command.
+     * Register the `nova:base-resource` command.
      *
      * @return void
      */
@@ -92,7 +94,7 @@ class DevToolServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the command.
+     * Register the `nova:filter` command.
      *
      * @return void
      */
@@ -104,7 +106,7 @@ class DevToolServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the command.
+     * Register the `nova:lens` command.
      *
      * @return void
      */
@@ -116,7 +118,19 @@ class DevToolServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the command.
+     * Register the `nova:policy` command.
+     *
+     * @return void
+     */
+    protected function registerPolicyMakeCommand()
+    {
+        $this->app->singleton(PolicyMakeCommand::class, function ($app) {
+            return new Console\PolicyMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the `nova:resource` command.
      *
      * @return void
      */

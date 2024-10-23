@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/nova/blob/4.0/src/Console/FilterCommand.php
+ * @see Laravel\Nova\Console\FilterCommand
  */
 #[AsCommand(name: 'nova:filter', description: 'Create a new filter class')]
 class FilterCommand extends Command
