@@ -14,6 +14,7 @@ use function Orchestra\Testbench\package_path;
 */
 
 uses(Tests\TestCase::class)->in('Feature');
+// uses(PHPUnit\Framework\TestCase::class)->in('Unit');
 
 /*
 |--------------------------------------------------------------------------
