@@ -34,8 +34,8 @@ class DevToolServiceProvider extends ServiceProvider
         ]);
 
         if (defined('TESTBENCH_WORKING_PATH')) {
-            Workbench::swapFile('config', join_paths(__DIR__, '..', '..', 'stubs', 'testbench.stub'));
-            Workbench::swapFile('seeders.database', join_paths(__DIR__, '..', '..', 'stubs', 'DatabaseSeeder.stub'));
+            Workbench::swapFile('config', join_paths(__DIR__, '..', 'stubs', 'testbench.stub'));
+            Workbench::swapFile('seeders.database', join_paths(__DIR__, '..', 'stubs', 'DatabaseSeeder.stub'));
 
             $this->registerActionCommand();
             $this->registerBaseResourceCommand();
