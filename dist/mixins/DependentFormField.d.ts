@@ -30,6 +30,7 @@ declare namespace _default {
          */
         function fillIfVisible(formData: FormData, attribute: string, value: any): void;
         function syncField(): void;
+        function revertSyncedFieldToPreviousValue(field: any): void;
         function onSyncedField(): void;
         function emitOnSyncedFieldValueChange(): void;
         /**

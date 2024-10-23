@@ -29,6 +29,11 @@ export default class Nova {
      */
     private useShortcuts;
     /**
+     * @private
+     * @type {boolean}
+     */
+    private ignoreHistoryState;
+    /**
      * @protected
      * @type {{[key: string]: VueComponent|DefineComponent}}
      */
