@@ -75,16 +75,6 @@ class InstalledWorkbench
             Workbench::path(['app', 'Providers', 'NovaServiceProvider.php'])
         );
 
-        (new GeneratesFile(
-            filesystem: $this->files,
-            components: $event->components,
-            workingPath: $workingDirectory,
-            force: $force,
-        ))->handle(
-            join_paths($workingDirectory, 'DatabaseSeeder.stub'),
-            Workbench::path(['database', 'seeders', 'DatabaseSeeder.php'])
-        );
-
         Collection::make([
             Workbench::path(['app', '.gitkeep']),
             Workbench::path(['app', 'Nova', '.gitkeep']),
