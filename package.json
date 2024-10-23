@@ -1,7 +1,7 @@
 {
   "name": "laravel-nova-devtool",
   "description": "Laravel Nova DevTool",
-  "main": "lib/nova.mix.js",
+  "main": "nova.mix.js",
   "types": "types/index.d.ts",
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
