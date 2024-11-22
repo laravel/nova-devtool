@@ -7,8 +7,8 @@
     "require": {
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
-        "fakerphp/faker": "^1.21",
-        "orchestra/workbench": "^8.11|^9.7",
+        "fakerphp/faker": "^1.24",
+        "orchestra/workbench": "^8.12|^9.8",
         "symfony/polyfill-php83": "^1.31"
     },
     "require-dev": {
@@ -16,7 +16,7 @@
         "laravel/nova": "*",
         "laravel/pint": "^1.17",
         "orchestra/pest-plugin-testbench": "^2.0|^3.0",
-        "orchestra/testbench": "^8.24|^9.2",
+        "orchestra/testbench": "^8.28|^9.6.1",
         "phpstan/phpstan": "^1.12",
         "spatie/laravel-ray": "^1.37"
     },
