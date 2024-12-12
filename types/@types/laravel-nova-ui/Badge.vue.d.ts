@@ -34,8 +34,8 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
     };
 }>> & Readonly<{}>, {
     type: string;
-    variant: string;
     rounded: boolean;
+    variant: string;
     removable: boolean;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 export default _default;

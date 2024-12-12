@@ -4,6 +4,7 @@ export { default as PreventsModalAbandonment } from "./PreventsModalAbandonment"
 export { default as DependentFormField } from "./DependentFormField";
 export { default as HandlesFormRequest } from "./HandlesFormRequest";
 export { default as HandlesUploads } from "./HandlesUploads";
+export { default as InteractsWithResourceInformation } from "./InteractsWithResourceInformation";
 export { default as Localization } from "./Localization";
 export { default as MetricBehavior } from "./MetricBehavior";
 export { default as FieldValue } from "./FieldValue";

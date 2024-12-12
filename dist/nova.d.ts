@@ -29,11 +29,6 @@ export default class Nova {
      */
     private useShortcuts;
     /**
-     * @private
-     * @type {boolean}
-     */
-    private ignoreHistoryState;
-    /**
      * @protected
      * @type {{[key: string]: VueComponent|DefineComponent}}
      */
@@ -43,7 +38,10 @@ export default class Nova {
     /** @protected */
     protected $toasted: any;
     /** @public */
-    public $progress: any;
+    public $progress: {
+        start: (force: any) => void;
+        done: () => void;
+    };
     /** @public */
     public $router: import("@inertiajs/core").Router;
     /** @readonly */

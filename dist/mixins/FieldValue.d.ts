@@ -21,6 +21,10 @@ declare namespace _default {
          */
         function usesCustomizedDisplay(): boolean;
         /**
+         * @returns {boolean}
+         */
+        function fieldHasValueOrCustomizedDisplay(): boolean;
+        /**
          * @returns {string|null}
          */
         function fieldValue(): string | null;

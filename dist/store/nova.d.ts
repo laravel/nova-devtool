@@ -9,9 +9,7 @@ declare namespace _default {
         resources: any[];
         version: string;
         mainMenuShown: boolean;
-        canLeaveForm: boolean;
         canLeaveModal: boolean;
-        pushStateWasTriggered: boolean;
         validLicense: boolean;
         queryStringParams: {};
         compiledQueryStringParams: string;
@@ -24,19 +22,13 @@ declare namespace _default {
         function userMenu(s: any): any;
         function breadcrumbs(s: any): any;
         function mainMenuShown(s: any): any;
-        function canLeaveForm(s: any): any;
-        function canLeaveFormToPreviousPage(s: any): boolean;
         function canLeaveModal(s: any): any;
         function validLicense(s: any): any;
         function queryStringParams(s: any): any;
     }
     namespace mutations {
-        function allowLeavingForm(state: any): void;
-        function preventLeavingForm(state: any): void;
         function allowLeavingModal(state: any): void;
         function preventLeavingModal(state: any): void;
-        function triggerPushState(state: any): void;
-        function resetPushState(state: any): void;
         function toggleMainMenu(state: any): void;
     }
     namespace actions {

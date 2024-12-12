@@ -15,7 +15,7 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
         default: string;
     };
 }>> & Readonly<{}>, {
-    name: string;
     type: string;
+    name: string;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 export default _default;
