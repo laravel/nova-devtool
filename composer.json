@@ -13,7 +13,7 @@
     },
     "require-dev": {
         "larastan/larastan": "^2.4",
-        "laravel/nova": "*",
+        "laravel/nova": "^5.0",
         "laravel/pint": "^1.17",
         "orchestra/pest-plugin-testbench": "^2.0|^3.0",
         "orchestra/testbench": "^8.28|^9.6.1",
@@ -37,7 +37,6 @@
         }
     },
     "repositories": [
-        { "type": "artifact", "url": "artifacts" },
         { "type": "composer", "url": "https://nova.laravel.com" }
     ],
     "config": {
