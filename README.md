@@ -72,8 +72,8 @@ Nova Devtool ships with a generic `nova.mix.js` instead of publishing the file o
 ```diff
 let mix = require('laravel-mix')
 
--require('./nova.mix') // [!code --]
-+mix.extend('nova', new require('laravel-nova-devtool')) // [!code ++]
+-require('./nova.mix')
++mix.extend('nova', new require('laravel-nova-devtool'))
 
 mix
   .setPublicPath('dist')
