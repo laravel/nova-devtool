@@ -17,7 +17,7 @@ class DevTool extends Nova
      */
     public static function resourcesIn(string $directory): void
     {
-        $namespace = 'Workbench\App\\';
+        $namespace = Workbench::detectNamespace('app');
 
         $resources = [];
 

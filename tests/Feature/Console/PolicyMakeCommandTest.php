@@ -57,7 +57,6 @@ it('can generate policy file for user resource', function () {
     ], 'app/Nova/Policies/UserPolicy.php');
 });
 
-
 it('can generate policy file for a resource', function () {
     artisan('nova:policy', ['name' => 'PostPolicy', '--resource' => 'Post', '--preset' => 'laravel'])
         ->assertSuccessful();
