@@ -64,3 +64,21 @@ To reverse the above action, you need to run the following command:
 ```shell
 php vendor/bin/testbench nova:devtool disable-vue-devtool
 ```
+
+## Ugrading from Nova 4
+
+Nova Devtool ships with a generic `nova.mix.js` instead of publishing the file on each 3rd-party components. For external 3rd-party component you just need to include change the following code in `webpack.mix.js`:
+
+```diff
+let mix = require('laravel-mix')
+
+-require('./nova.mix') // [!code --]
++mix.extend('nova', new require('laravel-nova-devtool')) // [!code ++]
+
+mix
+  .setPublicPath('dist')
+
+  // ...
+```
+
+Finally, you can remove the existing `nova.mix.js` from the component root directory.
