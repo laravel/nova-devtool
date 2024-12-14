@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Console\View\Components\Factory as ViewComponent;
+use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Filesystem\Filesystem;
 use Laravel\Nova\DevTool\Listeners\InstallingWorkbench;
 use Mockery as m;
@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 it('can make user model and factory if installation without `--basic` option', function () {
     $kernel = m::mock(ConsoleKernel::class);
 
-    $listener = new InstallingWorkbench($kernel, new Filesystem());
+    $listener = new InstallingWorkbench($kernel, new Filesystem);
 
     $event = new InstallStarted(
         $input = m::mock(InputInterface::class),
@@ -32,7 +32,7 @@ it('can make user model and factory if installation without `--basic` option', f
 it('can throw exception if installation with `--basic` option', function () {
     $kernel = m::mock(ConsoleKernel::class);
 
-    $listener = new InstallingWorkbench($kernel, new Filesystem());
+    $listener = new InstallingWorkbench($kernel, new Filesystem);
 
     $event = new InstallStarted(
         $input = m::mock(InputInterface::class),
