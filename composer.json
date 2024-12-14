@@ -8,7 +8,7 @@
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
         "fakerphp/faker": "^1.24",
-        "orchestra/workbench": "^8.12|^9.8",
+        "orchestra/workbench": "^8.13|^9.9",
         "symfony/polyfill-php83": "^1.31"
     },
     "require-dev": {
