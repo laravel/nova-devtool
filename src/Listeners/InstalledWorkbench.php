@@ -39,7 +39,6 @@ class InstalledWorkbench
         (new EnsureDirectoryExists(
             filesystem: $this->files,
             components: $event->components,
-            workingPath: $workingDirectory,
         ))->handle([
             Workbench::path(['app', 'Nova']),
             Workbench::path(['app', 'Providers']),
@@ -48,7 +47,6 @@ class InstalledWorkbench
         (new GeneratesFile(
             filesystem: $this->files,
             components: $event->components,
-            workingPath: $workingDirectory,
             force: $force,
         ))->handle(
             join_paths($workingDirectory, 'base-resource.stub'),
@@ -58,7 +56,6 @@ class InstalledWorkbench
         (new GeneratesFile(
             filesystem: $this->files,
             components: $event->components,
-            workingPath: $workingDirectory,
             force: $force,
         ))->handle(
             join_paths($workingDirectory, 'user-resource.stub'),
@@ -68,7 +65,6 @@ class InstalledWorkbench
         (new GeneratesFile(
             filesystem: $this->files,
             components: $event->components,
-            workingPath: $workingDirectory,
             force: $force,
         ))->handle(
             join_paths($workingDirectory, 'NovaServiceProvider.stub'),
