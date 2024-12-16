@@ -16,7 +16,7 @@
         "laravel/nova": "^5.0",
         "laravel/pint": "^1.17",
         "orchestra/pest-plugin-testbench": "^2.0|^3.0",
-        "orchestra/testbench": "^8.28|^9.6.1",
+        "orchestra/testbench": "^8.30|^9.8",
         "phpstan/phpstan": "^1.12",
         "spatie/laravel-ray": "^1.37"
     },
