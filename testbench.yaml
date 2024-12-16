@@ -1,8 +1,8 @@
 providers:
-  - Laravel\Nova\NovaCoreServiceProvider
-  - Workbench\App\Providers\NovaServiceProvider
   - Laravel\Nova\NovaServiceProvider
+  - Laravel\Nova\NovaCoreServiceProvider
   - Laravel\Nova\DevTool\DevToolServiceProvider
+  - Workbench\App\Providers\NovaServiceProvider
 
 migrations: true
 
@@ -17,7 +17,8 @@ workbench:
     - asset-publish
     - create-sqlite-db
     - db:wipe
-    - migrate:refresh
+    - migrate-fresh:
+        --seed: true
   assets:
     - nova-assets
   sync: []

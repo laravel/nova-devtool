@@ -1,11 +1,14 @@
+laravel: '@testbench'
+
 providers:
   - Laravel\Nova\NovaCoreServiceProvider
-  - Workbench\App\Providers\NovaServiceProvider
+  - {{ WorkbenchAppNamespace }}Providers\NovaServiceProvider
+  # - {{ WorkbenchServiceProvider }}
 
 migrations: true
 
 seeders:
-  - Workbench\Database\Seeders\DatabaseSeeder
+  - {{ WorkbenchDatabaseSeeder }}
 
 workbench:
   start: /nova
