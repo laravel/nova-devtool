@@ -8,8 +8,7 @@
   ],
   "exclude": [
     "node_modules",
-    "vendor/laravel/nova/node_modules",
-    "vendor/laravel/nova/ui/node_modules"
+    "vendor/laravel/nova/node_modules"
   ],
   "compilerOptions": {
     // Tells TypeScript to read JS files, as
