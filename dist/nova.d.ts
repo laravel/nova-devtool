@@ -48,6 +48,12 @@ export default class Nova {
     readonly $testing: {
         timezone: (timezone: any) => void;
     };
+    /** @private */
+    private __started;
+    /** @private */
+    private __booted;
+    /** @private */
+    private __deployed;
     /**
      * Register a callback to be called before Nova starts. This is used to bootstrap
      * addons, tools, custom fields, or anything else Nova needs
@@ -80,6 +86,7 @@ export default class Nova {
     liftOff(): void;
     /** @private */
     private notificationPollingInterval;
+    deploy(): void;
     /**
      * Return configuration value from a key.
      *
