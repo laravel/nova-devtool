@@ -5,7 +5,7 @@
   "types": "types/index.d.ts",
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
-    "@inertiajs/vue3": "^1.2.0",
+    "@inertiajs/vue3": "^2.0.0",
     "axios": "^1.7.4",
     "lodash": "^4.17.21",
     "tailwindcss": "^3.4.10",
