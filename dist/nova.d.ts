@@ -63,6 +63,8 @@ export default class Nova {
     booting(callback: BootingCallback): void;
     /**
      * Execute all of the booting callbacks.
+     *
+     * @ignore
      */
     boot(): void;
     /** @type {VueStore} */
@@ -86,6 +88,9 @@ export default class Nova {
     liftOff(): void;
     /** @private */
     private notificationPollingInterval;
+    /**
+     * @ignore
+     */
     deploy(): void;
     /**
      * Return configuration value from a key.

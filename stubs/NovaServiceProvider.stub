@@ -41,6 +41,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::routes()
             ->withAuthenticationRoutes(default: true)
             ->withPasswordResetRoutes()
+            ->withEmailVerificationRoutes()
             ->register();
     }
 
