@@ -151,7 +151,7 @@ class DevToolServiceProvider extends ServiceProvider
     {
         if (
             $this->app->runningInConsole()
-            && \defined('TESTBENCH_WORKING_PATH')
+            && ($this->app->runningUnitTests() || \defined('TESTBENCH_WORKING_PATH'))
         ) {
             tap($this->app->make('events'), function (EventDispatcher $event) {
                 $event->listen(InstallStarted::class, [Listeners\InstallingWorkbench::class, 'handle']);
