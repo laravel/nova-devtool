@@ -94,15 +94,20 @@ class InstalledWorkbench
     protected function replaceInFile(string $filename): void
     {
         $workbenchAppNamespacePrefix = rtrim(Workbench::detectNamespace('app') ?? 'Workbench\App\\', '\\');
+        $workbenchFactoriesNamespacePrefix = rtrim(Workbench::detectNamespace('database/factories') ?? 'Workbench\Database\Factories\\', '\\');
         $workbenchSeederNamespacePrefix = rtrim(Workbench::detectNamespace('database/seeders') ?? 'Workbench\Database\Seeders\\', '\\');
 
-        $serviceProvider = \sprintf('%s\Providers\WorkbenchServiceProvider', $workbenchAppNamespacePrefix);
-        $databaseSeeder = \sprintf('%s\DatabaseSeeder', $workbenchSeederNamespacePrefix);
+        $serviceProvider = sprintf('%s\Providers\WorkbenchServiceProvider', $workbenchAppNamespacePrefix);
+        $databaseSeeder = sprintf('%s\DatabaseSeeder', $workbenchSeederNamespacePrefix);
+        $userModel = sprintf('%s\Models\User', $workbenchAppNamespacePrefix);
+        $userFactory = sprintf('%s\UserFactory', $workbenchFactoriesNamespacePrefix);
 
         $this->files->replaceInFile(
             [
                 '{{WorkbenchAppNamespace}}',
                 '{{ WorkbenchAppNamespace }}',
+                '{{WorkbenchFactoryNamespace}}',
+                '{{ WorkbenchFactoryNamespace }}',
                 '{{WorkbenchSeederNamespace}}',
                 '{{ WorkbenchSeederNamespace }}',
 
@@ -113,10 +118,20 @@ class InstalledWorkbench
                 '{{WorkbenchDatabaseSeeder}}',
                 '{{ WorkbenchDatabaseSeeder }}',
                 'Workbench\Database\Seeders\DatabaseSeeder',
+
+                '{{WorkbenchUserModel}}',
+                '{{ WorkbenchUserModel }}',
+                'Workbench\App\Models\User',
+
+                '{{WorkbenchUserFactory}}',
+                '{{ WorkbenchUserFactory }}',
+                'Workbench\Database\Factories\UserFactory',
             ],
             [
                 $workbenchAppNamespacePrefix,
                 $workbenchAppNamespacePrefix,
+                $workbenchFactoriesNamespacePrefix,
+                $workbenchFactoriesNamespacePrefix,
                 $workbenchSeederNamespacePrefix,
                 $workbenchSeederNamespacePrefix,
 
@@ -127,6 +142,14 @@ class InstalledWorkbench
                 $databaseSeeder,
                 $databaseSeeder,
                 $databaseSeeder,
+
+                $userModel,
+                $userModel,
+                $userModel,
+
+                $userFactory,
+                $userFactory,
+                $userFactory,
             ],
             $filename
         );

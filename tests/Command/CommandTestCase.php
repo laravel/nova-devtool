@@ -68,6 +68,22 @@ abstract class CommandTestCase extends \Orchestra\Testbench\TestCase
         ], join_paths($workingPath, 'workbench', 'app', 'Models', 'User.php'));
 
         $this->assertFileContains([
+            sprintf('namespace %sNova;', $prefix ? 'Workbench\App\\' : 'App\\'),
+            'abstract class Resource extends NovaResource',
+        ], join_paths($workingPath, 'workbench', 'app', 'Nova', 'Resource.php'));
+
+        $this->assertFileContains([
+            sprintf('namespace %sNova;', $prefix ? 'Workbench\App\\' : 'App\\'),
+            'class User extends Resource',
+            sprintf('public static $model = \%sModels\User::class;', $prefix ? 'Workbench\App\\' : 'App\\'),
+        ], join_paths($workingPath, 'workbench', 'app', 'Nova', 'User.php'));
+
+        $this->assertFileContains([
+            sprintf('namespace %sProviders;', $prefix ? 'Workbench\App\\' : 'App\\'),
+            'class NovaServiceProvider extends NovaApplicationServiceProvider',
+        ], join_paths($workingPath, 'workbench', 'app', 'Providers', 'NovaServiceProvider.php'));
+
+        $this->assertFileContains([
             sprintf('namespace %sProviders;', $prefix ? 'Workbench\App\\' : 'App\\'),
             'class WorkbenchServiceProvider extends ServiceProvider',
         ], join_paths($workingPath, 'workbench', 'app', 'Providers', 'WorkbenchServiceProvider.php'));
