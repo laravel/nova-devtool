@@ -51,6 +51,13 @@ abstract class CommandTestCase extends \Orchestra\Testbench\TestCase
         ];
     }
 
+    protected function defineEnvironment($app)
+    {
+        if (! defined('TESTBENCH_CORE')) {
+            define('TESTBENCH_CORE', true);
+        }
+    }
+
     /**
      * Assert `workbench:devtool` or `workbench:install --devtool` command executed.
      */
