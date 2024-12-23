@@ -2,7 +2,6 @@
 
 namespace Laravel\Nova\DevTool\Listeners;
 
-use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Workbench\Events\InstallStarted;
 use RuntimeException;
