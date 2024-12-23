@@ -3,7 +3,7 @@ laravel: '@testbench'
 providers:
   - Laravel\Nova\NovaServiceProvider
   - Laravel\Nova\NovaCoreServiceProvider
-  - {{ WorkbenchAppNamespace }}Providers\NovaServiceProvider
+  - {{ WorkbenchAppNamespace }}\Providers\NovaServiceProvider
   # - {{ WorkbenchServiceProvider }}
 
 migrations: true
