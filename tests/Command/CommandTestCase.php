@@ -12,6 +12,7 @@ use Orchestra\Workbench\Workbench;
 use Orchestra\Workbench\WorkbenchServiceProvider;
 use RuntimeException;
 use Workbench\Database\Seeders\DatabaseSeeder as WorkbenchDatabaseSeeder;
+
 use function Orchestra\Testbench\default_skeleton_path;
 use function Orchestra\Testbench\join_paths;
 
