@@ -50,8 +50,10 @@ class InstalledWorkbench
             force: $force,
         ))->handle(
             join_paths($workingDirectory, 'base-resource.stub'),
-            Workbench::path(['app', 'Nova', 'Resource.php'])
+            $baseResource = Workbench::path(['app', 'Nova', 'Resource.php'])
         );
+
+        $this->replaceInFile($baseResource);
 
         (new GeneratesFile(
             filesystem: $this->files,
@@ -62,22 +64,71 @@ class InstalledWorkbench
             $userResource = Workbench::path(['app', 'Nova', 'User.php'])
         );
 
+        $this->replaceInFile($userResource);
+
         (new GeneratesFile(
             filesystem: $this->files,
             components: $event->components,
             force: $force,
         ))->handle(
             join_paths($workingDirectory, 'NovaServiceProvider.stub'),
-            Workbench::path(['app', 'Providers', 'NovaServiceProvider.php'])
+            $serviceProvider = Workbench::path(['app', 'Providers', 'NovaServiceProvider.php'])
         );
+
+        $this->replaceInFile($serviceProvider);
 
         Collection::make([
             Workbench::path(['app', '.gitkeep']),
+            Workbench::path(['app', 'Models', '.gitkeep']),
             Workbench::path(['app', 'Nova', '.gitkeep']),
             Workbench::path(['app', 'Providers', '.gitkeep']),
             Workbench::path(['database', 'seeders', '.gitkeep']),
         ])->each(function ($file) {
             $this->files->delete($file);
         });
+    }
+
+    /**
+     * Replace strings in given file.
+     */
+    protected function replaceInFile(string $filename): void
+    {
+        $workbenchAppNamespacePrefix = rtrim(Workbench::detectNamespace('app') ?? 'Workbench\App\\', '\\');
+        $workbenchSeederNamespacePrefix = rtrim(Workbench::detectNamespace('database/seeders') ?? 'Workbench\Database\Seeders\\', '\\');
+
+        $serviceProvider = \sprintf('%s\Providers\WorkbenchServiceProvider', $workbenchAppNamespacePrefix);
+        $databaseSeeder = \sprintf('%s\DatabaseSeeder', $workbenchSeederNamespacePrefix);
+
+        $this->files->replaceInFile(
+            [
+                '{{WorkbenchAppNamespace}}',
+                '{{ WorkbenchAppNamespace }}',
+                '{{WorkbenchSeederNamespace}}',
+                '{{ WorkbenchSeederNamespace }}',
+
+                '{{WorkbenchServiceProvider}}',
+                '{{ WorkbenchServiceProvider }}',
+                'Workbench\App\Providers\WorkbenchServiceProvider',
+
+                '{{WorkbenchDatabaseSeeder}}',
+                '{{ WorkbenchDatabaseSeeder }}',
+                'Workbench\Database\Seeders\DatabaseSeeder',
+            ],
+            [
+                $workbenchAppNamespacePrefix,
+                $workbenchAppNamespacePrefix,
+                $workbenchSeederNamespacePrefix,
+                $workbenchSeederNamespacePrefix,
+
+                $serviceProvider,
+                $serviceProvider,
+                $serviceProvider,
+
+                $databaseSeeder,
+                $databaseSeeder,
+                $databaseSeeder,
+            ],
+            $filename
+        );
     }
 }
