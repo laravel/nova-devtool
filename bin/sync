@@ -31,7 +31,7 @@ Illuminate\Support\Collection::make([
 
 $files->copy("{$workingPath}/vendor/laravel/nova/src/Console/stubs/base-resource.stub", "{$workingPath}/stubs/base-resource.stub");
 transform([
-    "{{ namespace }}" => "Workbench\App\Nova",
+    "{{ namespace }}" => "{{WorkbenchAppNamespace}}\Nova",
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/stubs/base-resource.stub"));
 
 $files->copy("{$workingPath}/vendor/laravel/nova/src/Console/stubs/main-dashboard.stub", "{$workingPath}/stubs/main-dashboard.stub");
@@ -40,15 +40,15 @@ transform([
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/stubs/main-dashboard.stub"));
 
 transform([
-    "namespace App\Nova;" => "namespace Workbench\App\Nova;",
+    "namespace App\Nova;" => "namespace {{WorkbenchAppNamespace}}\Nova;",
     "use Laravel\Nova\Fields\Gravatar;".PHP_EOL => "",
-    "@var class-string<\App\Models\User>" => "@var class-string<\Workbench\App\Models\User>",
-    "    public static \$model = \App\Models\User::class;" =>  "    public static \$model = \Workbench\App\Models\User::class;",
+    "@var class-string<\App\Models\User>" => "@var class-string<\{{WorkbenchAppNamespace}}\Models\User>",
+    "    public static \$model = \App\Models\User::class;" =>  "    public static \$model = \{{WorkbenchAppNamespace}}\Models\User::class;",
     "            Gravatar::make()->maxWidth(50),".PHP_EOL.PHP_EOL => "",
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/stubs/user-resource.stub"));
 
 transform([
-    "namespace App\Providers;" => "namespace Workbench\App\Providers;",
+    "namespace App\Providers;" => "namespace {{WorkbenchAppNamespace}}\Providers;",
     PHP_EOL."use App\Models\User;" => "",
     "use Laravel\Nova\Nova;" => "use Laravel\Nova\DevTool\DevTool as Nova;",
     "->withAuthenticationRoutes()" => "->withAuthenticationRoutes(default: true)",
