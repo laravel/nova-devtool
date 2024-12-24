@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Orchestra\Testbench\Foundation\Console\Actions\GeneratesFile;
 use Symfony\Component\Console\Attribute\AsCommand;
+
 use function Illuminate\Filesystem\join_paths;
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\select;
