@@ -16,6 +16,7 @@ use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\select;
 use function Orchestra\Testbench\default_skeleton_path;
 use function Orchestra\Testbench\package_path;
+use function Orchestra\Testbench\workbench_path;
 
 #[AsCommand(name: 'nova:devtool', description: 'Configure Laravel Nova DevTool')]
 class DevToolCommand extends Command implements PromptsForMissingInput
@@ -40,11 +41,27 @@ class DevToolCommand extends Command implements PromptsForMissingInput
         }
 
         return match ($action = $this->argument('action')) {
+            'setup' => $this->setupNovaWorkbench($filesystem, $manifest),
             'install' => $this->installNpmDependencies($filesystem, $manifest),
             'enable-vue-devtool' => $this->enablesVueDevTool($filesystem, $manifest),
             'disable-vue-devtool' => $this->disablesVueDevTool($filesystem, $manifest),
             default => throw new InvalidArgumentException(sprintf('Unable to handle [%s] action', $action)),
         };
+    }
+
+    /**
+     * Setup Nova Workbench.
+     */
+    protected function setupNovaWorkbench(Filesystem $filesystem, PackageManifest $manifest): int
+    {
+        $this->executeCommand([
+            'npm set progress=false',
+            'npm install --save-dev "vendor/laravel/nova-devtool"',
+        ], package_path());
+
+        return $this->call('workbench:install', [
+            '--devtool' => true,
+        ]);
     }
 
     /**
@@ -62,7 +79,14 @@ class DevToolCommand extends Command implements PromptsForMissingInput
 
         $dependencies = multiselect(
             label: 'Dependencies to install?',
-            options: ['axios', 'lodash', 'tailwindcss', 'vue'],
+            options: [
+                '@inertiajs/vue3',
+                'axios',
+                'lodash',
+                'tailwindcss',
+                'vue',
+                'vuex',
+            ],
             default: [],
         );
 
@@ -159,11 +183,12 @@ class DevToolCommand extends Command implements PromptsForMissingInput
         return [
             'action' => fn () => select(
                 label: 'Which action to be executed?',
-                options: [
+                options: array_filter([
+                    'setup' => is_dir(workbench_path()) ? null : 'Setup Nova Workbench',
                     'install' => 'Install NPM Dependencies',
                     'enable-vue-devtool' => 'Enable Vue DevTool',
                     'disable-vue-devtool' => 'Disable Vue DevTool',
-                ],
+                ]),
                 default: 'owner'
             ),
         ];
