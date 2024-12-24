@@ -9,6 +9,7 @@ use Orchestra\Testbench\Foundation\Console\Actions\GeneratesFile;
 use Orchestra\Workbench\Events\InstallEnded;
 use Orchestra\Workbench\StubRegistrar;
 use Orchestra\Workbench\Workbench;
+
 use function Illuminate\Filesystem\join_paths;
 
 class InstalledWorkbench
