@@ -5,23 +5,29 @@ namespace Tests\Command;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
+use function Orchestra\Testbench\laravel_version_compare;
+
 class DevToolCommandTest extends CommandTestCase
 {
     #[Test]
     #[DataProvider('environmentFileDataProviders')]
     public function it_can_run_devtool_command_with_installation(?string $answer, bool $createEnvironmentFile)
     {
-        $this->artisan('workbench:devtool', ['--install' => true])
+        $command = $this->artisan('workbench:devtool', ['--install' => true])
             ->expectsConfirmation('Prefix with `Workbench` namespace?', answer: 'yes')
             ->expectsChoice("Export '.env' file as?", $answer, [
                 'Skip exporting .env',
                 '.env',
                 '.env.example',
                 '.env.dist',
-            ])
-            ->expectsConfirmation('Generate `workbench/bootstrap/app.php` file?', answer: 'no')
-            ->expectsConfirmation('Generate `workbench/bootstrap/providers.php` file?', answer: 'no')
-            ->assertSuccessful();
+            ]);
+
+        if (laravel_version_compare('11.0', '>=')) {
+            $command->expectsConfirmation('Generate `workbench/bootstrap/app.php` file?', answer: 'no')
+                ->expectsConfirmation('Generate `workbench/bootstrap/providers.php` file?', answer: 'no');
+        }
+
+        $command->assertSuccessful()->execute();
 
         $this->assertCommandExecutedWithDevTool();
         $this->assertCommandExecutedWithInstall();
