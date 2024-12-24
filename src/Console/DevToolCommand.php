@@ -9,8 +9,8 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\PackageManifest;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Orchestra\Testbench\Foundation\Console\Actions\GeneratesFile;
 use Symfony\Component\Console\Attribute\AsCommand;
-
 use function Illuminate\Filesystem\join_paths;
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\select;
@@ -70,7 +70,15 @@ class DevToolCommand extends Command implements PromptsForMissingInput
      */
     protected function installTypeScriptConfiguration(Filesystem $filesystem, PackageManifest $manifest): int
     {
-        $filesystem->copy(join_paths(__DIR__, 'stubs', 'tsconfig.json'), package_path('tsconfig.json'));
+        (new GeneratesFile(
+            filesystem: $filesystem,
+            components: $this->components,
+            force: false,
+            confirmation: true,
+        ))->handle(
+            join_paths(__DIR__, 'stubs', 'tsconfig.json'),
+            package_path('tsconfig.json')
+        );
 
         return self::SUCCESS;
     }
@@ -122,7 +130,7 @@ class DevToolCommand extends Command implements PromptsForMissingInput
             ], package_path('tailwind.config.js'));
         }
 
-        return self::SUCCESS;
+        return $this->installTypeScriptConfiguration($filesystem, $manifest);
     }
 
     /**
