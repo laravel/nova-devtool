@@ -41,7 +41,8 @@ class DevToolCommand extends Command implements PromptsForMissingInput
         }
 
         return match ($action = $this->argument('action')) {
-            'setup' => $this->setupNovaWorkbench($filesystem, $manifest),
+            'setup' => $this->installNovaWorkbench($filesystem, $manifest),
+            'tsconfig' => $this->installTypeScriptConfiguration($filesystem, $manifest),
             'install' => $this->installNpmDependencies($filesystem, $manifest),
             'enable-vue-devtool' => $this->enablesVueDevTool($filesystem, $manifest),
             'disable-vue-devtool' => $this->disablesVueDevTool($filesystem, $manifest),
@@ -52,7 +53,7 @@ class DevToolCommand extends Command implements PromptsForMissingInput
     /**
      * Setup Nova Workbench.
      */
-    protected function setupNovaWorkbench(Filesystem $filesystem, PackageManifest $manifest): int
+    protected function installNovaWorkbench(Filesystem $filesystem, PackageManifest $manifest): int
     {
         $this->executeCommand([
             'npm set progress=false',
@@ -62,6 +63,16 @@ class DevToolCommand extends Command implements PromptsForMissingInput
         return $this->call('workbench:install', [
             '--devtool' => true,
         ]);
+    }
+
+    /**
+     * Install `tsconfig.json` configuration.
+     */
+    protected function installTypeScriptConfiguration(Filesystem $filesystem, PackageManifest $manifest): int
+    {
+        $filesystem->copy(join_paths(__DIR__, 'stubs', 'tsconfig.json'), package_path('tsconfig.json'));
+
+        return self::SUCCESS;
     }
 
     /**
@@ -100,8 +111,6 @@ class DevToolCommand extends Command implements PromptsForMissingInput
             'npm set progress=false',
             'npm install --dev '.implode(' ', $dependencies),
         ], package_path());
-
-        $filesystem->copy(join_paths(__DIR__, 'stubs', 'tsconfig.json'), package_path('tsconfig.json'));
 
         if (in_array('tailwindcss', $dependencies)) {
             $filesystem->copy(join_paths(__DIR__, 'stubs', 'postcss.config.js'), package_path('postcss.config.js'));
@@ -188,6 +197,7 @@ class DevToolCommand extends Command implements PromptsForMissingInput
                     'install' => 'Install NPM Dependencies',
                     'enable-vue-devtool' => 'Enable Vue DevTool',
                     'disable-vue-devtool' => 'Disable Vue DevTool',
+                    'tsconfig' => 'Install `tsconfig.json` for Nova',
                 ]),
                 default: 'owner'
             ),
