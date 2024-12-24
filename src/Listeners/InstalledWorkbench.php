@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Orchestra\Testbench\Foundation\Console\Actions\EnsureDirectoryExists;
 use Orchestra\Testbench\Foundation\Console\Actions\GeneratesFile;
 use Orchestra\Workbench\Events\InstallEnded;
+use Orchestra\Workbench\StubRegistrar;
 use Orchestra\Workbench\Workbench;
 
 use function Illuminate\Filesystem\join_paths;
@@ -53,7 +54,7 @@ class InstalledWorkbench
             $baseResource = Workbench::path(['app', 'Nova', 'Resource.php'])
         );
 
-        $this->replaceInFile($baseResource);
+        StubRegistrar::replaceInFile($this->files, $baseResource);
 
         (new GeneratesFile(
             filesystem: $this->files,
@@ -64,7 +65,7 @@ class InstalledWorkbench
             $userResource = Workbench::path(['app', 'Nova', 'User.php'])
         );
 
-        $this->replaceInFile($userResource);
+        StubRegistrar::replaceInFile($this->files, $userResource);
 
         (new GeneratesFile(
             filesystem: $this->files,
@@ -75,7 +76,7 @@ class InstalledWorkbench
             $serviceProvider = Workbench::path(['app', 'Providers', 'NovaServiceProvider.php'])
         );
 
-        $this->replaceInFile($serviceProvider);
+        StubRegistrar::replaceInFile($this->files, $serviceProvider);
 
         Collection::make([
             Workbench::path(['app', '.gitkeep']),
@@ -86,72 +87,5 @@ class InstalledWorkbench
         ])->each(function ($file) {
             $this->files->delete($file);
         });
-    }
-
-    /**
-     * Replace strings in given file.
-     */
-    protected function replaceInFile(string $filename): void
-    {
-        $workbenchAppNamespacePrefix = rtrim(Workbench::detectNamespace('app') ?? 'Workbench\App\\', '\\');
-        $workbenchFactoriesNamespacePrefix = rtrim(Workbench::detectNamespace('database/factories') ?? 'Workbench\Database\Factories\\', '\\');
-        $workbenchSeederNamespacePrefix = rtrim(Workbench::detectNamespace('database/seeders') ?? 'Workbench\Database\Seeders\\', '\\');
-
-        $serviceProvider = sprintf('%s\Providers\WorkbenchServiceProvider', $workbenchAppNamespacePrefix);
-        $databaseSeeder = sprintf('%s\DatabaseSeeder', $workbenchSeederNamespacePrefix);
-        $userModel = sprintf('%s\Models\User', $workbenchAppNamespacePrefix);
-        $userFactory = sprintf('%s\UserFactory', $workbenchFactoriesNamespacePrefix);
-
-        $this->files->replaceInFile(
-            [
-                '{{WorkbenchAppNamespace}}',
-                '{{ WorkbenchAppNamespace }}',
-                '{{WorkbenchFactoryNamespace}}',
-                '{{ WorkbenchFactoryNamespace }}',
-                '{{WorkbenchSeederNamespace}}',
-                '{{ WorkbenchSeederNamespace }}',
-
-                '{{WorkbenchServiceProvider}}',
-                '{{ WorkbenchServiceProvider }}',
-                'Workbench\App\Providers\WorkbenchServiceProvider',
-
-                '{{WorkbenchDatabaseSeeder}}',
-                '{{ WorkbenchDatabaseSeeder }}',
-                'Workbench\Database\Seeders\DatabaseSeeder',
-
-                '{{WorkbenchUserModel}}',
-                '{{ WorkbenchUserModel }}',
-                'Workbench\App\Models\User',
-
-                '{{WorkbenchUserFactory}}',
-                '{{ WorkbenchUserFactory }}',
-                'Workbench\Database\Factories\UserFactory',
-            ],
-            [
-                $workbenchAppNamespacePrefix,
-                $workbenchAppNamespacePrefix,
-                $workbenchFactoriesNamespacePrefix,
-                $workbenchFactoriesNamespacePrefix,
-                $workbenchSeederNamespacePrefix,
-                $workbenchSeederNamespacePrefix,
-
-                $serviceProvider,
-                $serviceProvider,
-                $serviceProvider,
-
-                $databaseSeeder,
-                $databaseSeeder,
-                $databaseSeeder,
-
-                $userModel,
-                $userModel,
-                $userModel,
-
-                $userFactory,
-                $userFactory,
-                $userFactory,
-            ],
-            $filename
-        );
     }
 }
