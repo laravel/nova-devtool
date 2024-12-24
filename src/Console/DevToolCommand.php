@@ -43,10 +43,10 @@ class DevToolCommand extends Command implements PromptsForMissingInput
 
         return match ($action = $this->argument('action')) {
             'setup' => $this->installNovaWorkbench($filesystem, $manifest),
-            'tsconfig' => $this->installTypeScriptConfiguration($filesystem, $manifest),
             'install' => $this->installNpmDependencies($filesystem, $manifest),
             'enable-vue-devtool' => $this->enablesVueDevTool($filesystem, $manifest),
             'disable-vue-devtool' => $this->disablesVueDevTool($filesystem, $manifest),
+            'tsconfig' => $this->installTypeScriptConfiguration($filesystem, $manifest),
             default => throw new InvalidArgumentException(sprintf('Unable to handle [%s] action', $action)),
         };
     }
