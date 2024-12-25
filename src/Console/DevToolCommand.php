@@ -46,7 +46,7 @@ class DevToolCommand extends Command implements PromptsForMissingInput
             'install' => $this->installNpmDependencies($filesystem, $manifest),
             'enable-vue-devtool' => $this->enablesVueDevTool($filesystem, $manifest),
             'disable-vue-devtool' => $this->disablesVueDevTool($filesystem, $manifest),
-            'tsconfig' => $this->installTypeScriptConfiguration($filesystem, $manifest),
+            'tsconfig' => $this->installTypeScriptConfiguration($filesystem, $manifest, confirmation: false),
             default => throw new InvalidArgumentException(sprintf('Unable to handle [%s] action', $action)),
         };
     }
@@ -69,13 +69,13 @@ class DevToolCommand extends Command implements PromptsForMissingInput
     /**
      * Install `tsconfig.json` configuration.
      */
-    protected function installTypeScriptConfiguration(Filesystem $filesystem, PackageManifest $manifest): int
+    protected function installTypeScriptConfiguration(Filesystem $filesystem, PackageManifest $manifest, bool $confirmation = true): int
     {
         (new GeneratesFile(
             filesystem: $filesystem,
             components: $this->components,
             force: false,
-            confirmation: true,
+            confirmation: $confirmation,
         ))->handle(
             join_paths(__DIR__, 'stubs', 'tsconfig.json'),
             package_path('tsconfig.json')
@@ -131,7 +131,7 @@ class DevToolCommand extends Command implements PromptsForMissingInput
             ], package_path('tailwind.config.js'));
         }
 
-        return $this->installTypeScriptConfiguration($filesystem, $manifest);
+        return $this->installTypeScriptConfiguration($filesystem, $manifest, confirmation: true);
     }
 
     /**
