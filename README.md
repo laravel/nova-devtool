@@ -21,7 +21,7 @@ npm install --save-dev "vendor/laravel/nova-devtool"
 Laravel Nova Devtool can setup a basic Laravel Nova installation using `workbench` directory via [Orchestra Workbench](https://github.com/orchestral/workbench). To start the installation you can run the following command:
 
 ```shell
-php vendor/bin/testbench workbench:install --devtool
+php vendor/bin/testbench nova:devtool setup
 ```
 
 Once the installation is completed, you should be able to serve Laravel Nova by running the following command:
