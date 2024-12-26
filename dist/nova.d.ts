@@ -53,7 +53,7 @@ export default class Nova {
     /** @private */
     private __booted;
     /** @private */
-    private __deployed;
+    private __liftOff;
     /**
      * Register a callback to be called before Nova starts. This is used to bootstrap
      * addons, tools, custom fields, or anything else Nova needs
@@ -63,8 +63,6 @@ export default class Nova {
     booting(callback: BootingCallback): void;
     /**
      * Execute all of the booting callbacks.
-     *
-     * @ignore
      */
     boot(): void;
     /** @type {VueStore} */
@@ -88,10 +86,6 @@ export default class Nova {
     liftOff(): void;
     /** @private */
     private notificationPollingInterval;
-    /**
-     * @ignore
-     */
-    deploy(): void;
     /**
      * Return configuration value from a key.
      *
