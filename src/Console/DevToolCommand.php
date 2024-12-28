@@ -56,14 +56,22 @@ class DevToolCommand extends Command implements PromptsForMissingInput
      */
     protected function installNovaWorkbench(Filesystem $filesystem, PackageManifest $manifest): int
     {
-        $this->executeCommand([
-            'npm set progress=false',
-            'npm install --save-dev "vendor/laravel/nova-devtool"',
-        ], package_path());
+        $this->installNoveDevtoolNpmDependencies();
 
         return $this->call('workbench:install', [
             '--devtool' => true,
         ]);
+    }
+
+    /**
+     * Install `laravel-nova-devtool` to `package.json`.
+     */
+    protected function installNoveDevtoolNpmDependencies(): void
+    {
+        $this->executeCommand([
+            'npm set progress=false',
+            'npm install --save-dev "vendor/laravel/nova-devtool"',
+        ], package_path());
     }
 
     /**
@@ -116,9 +124,11 @@ class DevToolCommand extends Command implements PromptsForMissingInput
             return self::SUCCESS;
         }
 
+        $this->installNoveDevtoolNpmDependencies();
+
         $this->executeCommand([
             'npm set progress=false',
-            'npm install --dev '.implode(' ', $dependencies),
+            'npm install --save-dev '.implode(' ', $dependencies),
         ], package_path());
 
         if (in_array('tailwindcss', $dependencies)) {
@@ -206,7 +216,7 @@ class DevToolCommand extends Command implements PromptsForMissingInput
                     'install' => 'Install NPM Dependencies',
                     'enable-vue-devtool' => 'Enable Vue DevTool',
                     'disable-vue-devtool' => 'Disable Vue DevTool',
-                    'tsconfig' => 'Install `tsconfig.json` for Nova',
+                    'tsconfig' => is_file(package_path('tsconfig.json')) ? null : 'Install `tsconfig.json` for Nova',
                 ]),
                 default: 'owner'
             ),
