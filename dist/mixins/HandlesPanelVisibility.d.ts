@@ -1,7 +1,7 @@
 declare namespace _default {
     let emits: string[];
     function data(): {
-        visibleFieldsForPanel: {};
+        visibleFieldsForPanel: any;
     };
     function created(): void;
     namespace methods {
