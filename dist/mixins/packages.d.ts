@@ -1,6 +1,7 @@
 export { mapProps } from "./propTypes";
 export { default as PreventsFormAbandonment } from "./PreventsFormAbandonment";
 export { default as PreventsModalAbandonment } from "./PreventsModalAbandonment";
+export { default as BehavesAsPanel } from "./BehavesAsPanel";
 export { default as DependentFormField } from "./DependentFormField";
 export { default as HandlesFormRequest } from "./HandlesFormRequest";
 export { default as HandlesUploads } from "./HandlesUploads";
@@ -11,6 +12,7 @@ export { default as FieldValue } from "./FieldValue";
 export { default as FormEvents } from "./FormEvents";
 export { default as FormField } from "./FormField";
 export { default as HandlesFieldAttachments } from "./HandlesFieldAttachments";
+export { default as HandlesFieldPreviews } from "./HandlesFieldPreviews";
 export { default as HandlesValidationErrors } from "./HandlesValidationErrors";
 export { default as HasCards } from "./HasCards";
 export { default as HandlesPanelVisibility } from "./HandlesPanelVisibility";
