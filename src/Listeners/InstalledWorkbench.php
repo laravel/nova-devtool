@@ -24,10 +24,8 @@ class InstalledWorkbench
 
     /**
      * Handle the event.
-     *
-     * @return void
      */
-    public function handle(InstallEnded $event)
+    public function handle(InstallEnded $event): void
     {
         $force = false;
 
