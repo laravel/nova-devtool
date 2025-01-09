@@ -21,10 +21,8 @@ class DevToolServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         if (! $this->app->runningInConsole()) {
             return;
@@ -60,10 +58,8 @@ class DevToolServiceProvider extends ServiceProvider
 
     /**
      * Register the `nova:action` command.
-     *
-     * @return void
      */
-    protected function registerActionCommand()
+    protected function registerActionCommand(): void
     {
         $this->app->singleton(ActionCommand::class, function ($app) {
             return new Console\ActionCommand($app['files']);
@@ -72,10 +68,8 @@ class DevToolServiceProvider extends ServiceProvider
 
     /**
      * Register the `nova:dashboard` command.
-     *
-     * @return void
      */
-    protected function registerDashboardCommand()
+    protected function registerDashboardCommand(): void
     {
         $this->app->singleton(DashboardCommand::class, function ($app) {
             return new Console\DashboardCommand($app['files']);
@@ -84,10 +78,8 @@ class DevToolServiceProvider extends ServiceProvider
 
     /**
      * Register the `nova:base-resource` command.
-     *
-     * @return void
      */
-    protected function registerBaseResourceCommand()
+    protected function registerBaseResourceCommand(): void
     {
         $this->app->singleton(BaseResourceCommand::class, function ($app) {
             return new Console\BaseResourceCommand($app['files']);
@@ -96,10 +88,8 @@ class DevToolServiceProvider extends ServiceProvider
 
     /**
      * Register the `nova:filter` command.
-     *
-     * @return void
      */
-    protected function registerFilterCommand()
+    protected function registerFilterCommand(): void
     {
         $this->app->singleton(FilterCommand::class, function ($app) {
             return new Console\FilterCommand($app['files']);
@@ -108,10 +98,8 @@ class DevToolServiceProvider extends ServiceProvider
 
     /**
      * Register the `nova:lens` command.
-     *
-     * @return void
      */
-    protected function registerLensCommand()
+    protected function registerLensCommand(): void
     {
         $this->app->singleton(LensCommand::class, function ($app) {
             return new Console\LensCommand($app['files']);
@@ -120,10 +108,8 @@ class DevToolServiceProvider extends ServiceProvider
 
     /**
      * Register the `nova:policy` command.
-     *
-     * @return void
      */
-    protected function registerPolicyMakeCommand()
+    protected function registerPolicyMakeCommand(): void
     {
         $this->app->singleton(PolicyMakeCommand::class, function ($app) {
             return new Console\PolicyMakeCommand($app['files']);
@@ -132,10 +118,8 @@ class DevToolServiceProvider extends ServiceProvider
 
     /**
      * Register the `nova:resource` command.
-     *
-     * @return void
      */
-    protected function registerResourceCommand()
+    protected function registerResourceCommand(): void
     {
         $this->app->singleton(ResourceCommand::class, function ($app) {
             return new Console\ResourceCommand($app['files']);
@@ -144,10 +128,8 @@ class DevToolServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole() && defined('TESTBENCH_CORE')) {
             tap($this->app->make('events'), function (EventDispatcher $event) {
