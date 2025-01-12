@@ -38,10 +38,7 @@ export default class Nova {
     /** @protected */
     protected $toasted: any;
     /** @public */
-    public $progress: {
-        start: (force: any) => void;
-        done: () => void;
-    };
+    public $progress: any;
     /** @public */
     public $router: import("@inertiajs/core").Router;
     /** @readonly */
