@@ -9,6 +9,7 @@ use Laravel\Nova\Console\BaseResourceCommand;
 use Laravel\Nova\Console\DashboardCommand;
 use Laravel\Nova\Console\FilterCommand;
 use Laravel\Nova\Console\LensCommand;
+use Laravel\Nova\Console\PartitionCommand;
 use Laravel\Nova\Console\PolicyMakeCommand;
 use Laravel\Nova\Console\ProgressCommand;
 use Laravel\Nova\Console\RepeatableCommand;
@@ -46,6 +47,7 @@ class DevToolServiceProvider extends ServiceProvider
             $this->registerDashboardCommand();
             $this->registerFilterCommand();
             $this->registerLensCommand();
+            $this->registerPartitionCommand();
             $this->registerPolicyMakeCommand();
             $this->registerProgressCommand();
             $this->registerRepeatableCommand();
@@ -60,6 +62,7 @@ class DevToolServiceProvider extends ServiceProvider
                 Console\DashboardCommand::class,
                 Console\FilterCommand::class,
                 Console\LensCommand::class,
+                Console\PartitionCommand::class,
                 Console\PolicyMakeCommand::class,
                 Console\ProgressCommand::class,
                 Console\RepeatableCommand::class,
@@ -118,6 +121,16 @@ class DevToolServiceProvider extends ServiceProvider
     {
         $this->app->singleton(LensCommand::class, function ($app) {
             return new Console\LensCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the `nova:partition` command.
+     */
+    protected function registerPartitionCommand(): void
+    {
+        $this->app->singleton(PartitionCommand::class, function ($app) {
+            return new Console\PartitionCommand($app['files']);
         });
     }
 
