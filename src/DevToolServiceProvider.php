@@ -9,8 +9,14 @@ use Laravel\Nova\Console\BaseResourceCommand;
 use Laravel\Nova\Console\DashboardCommand;
 use Laravel\Nova\Console\FilterCommand;
 use Laravel\Nova\Console\LensCommand;
+use Laravel\Nova\Console\PartitionCommand;
 use Laravel\Nova\Console\PolicyMakeCommand;
+use Laravel\Nova\Console\ProgressCommand;
+use Laravel\Nova\Console\RepeatableCommand;
 use Laravel\Nova\Console\ResourceCommand;
+use Laravel\Nova\Console\TableCommand;
+use Laravel\Nova\Console\TrendCommand;
+use Laravel\Nova\Console\ValueCommand;
 use Orchestra\Workbench\Events\InstallEnded;
 use Orchestra\Workbench\Events\InstallStarted;
 use Orchestra\Workbench\Workbench;
@@ -41,8 +47,14 @@ class DevToolServiceProvider extends ServiceProvider
             $this->registerDashboardCommand();
             $this->registerFilterCommand();
             $this->registerLensCommand();
+            $this->registerPartitionCommand();
             $this->registerPolicyMakeCommand();
+            $this->registerProgressCommand();
+            $this->registerRepeatableCommand();
             $this->registerResourceCommand();
+            $this->registerTableCommand();
+            $this->registerTrendCommand();
+            $this->registerValueCommand();
 
             $this->commands([
                 Console\ActionCommand::class,
@@ -50,8 +62,14 @@ class DevToolServiceProvider extends ServiceProvider
                 Console\DashboardCommand::class,
                 Console\FilterCommand::class,
                 Console\LensCommand::class,
+                Console\PartitionCommand::class,
                 Console\PolicyMakeCommand::class,
+                Console\ProgressCommand::class,
+                Console\RepeatableCommand::class,
                 Console\ResourceCommand::class,
+                Console\TableCommand::class,
+                Console\TrendCommand::class,
+                Console\ValueCommand::class,
             ]);
         }
     }
@@ -107,6 +125,16 @@ class DevToolServiceProvider extends ServiceProvider
     }
 
     /**
+     * Register the `nova:partition` command.
+     */
+    protected function registerPartitionCommand(): void
+    {
+        $this->app->singleton(PartitionCommand::class, function ($app) {
+            return new Console\PartitionCommand($app['files']);
+        });
+    }
+
+    /**
      * Register the `nova:policy` command.
      */
     protected function registerPolicyMakeCommand(): void
@@ -117,12 +145,62 @@ class DevToolServiceProvider extends ServiceProvider
     }
 
     /**
+     * Register the `nova:progress` command.
+     */
+    protected function registerProgressCommand(): void
+    {
+        $this->app->singleton(ProgressCommand::class, function ($app) {
+            return new Console\ProgressCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the `nova:repeatable` command.
+     */
+    protected function registerRepeatableCommand(): void
+    {
+        $this->app->singleton(RepeatableCommand::class, function ($app) {
+            return new Console\RepeatableCommand($app['files']);
+        });
+    }
+
+    /**
      * Register the `nova:resource` command.
      */
     protected function registerResourceCommand(): void
     {
         $this->app->singleton(ResourceCommand::class, function ($app) {
             return new Console\ResourceCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the `nova:table` command.
+     */
+    protected function registerTableCommand(): void
+    {
+        $this->app->singleton(TableCommand::class, function ($app) {
+            return new Console\TableCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the `nova:trend` command.
+     */
+    protected function registerTrendCommand(): void
+    {
+        $this->app->singleton(TrendCommand::class, function ($app) {
+            return new Console\TrendCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the `nova:value` command.
+     */
+    protected function registerValueCommand(): void
+    {
+        $this->app->singleton(ValueCommand::class, function ($app) {
+            return new Console\ValueCommand($app['files']);
         });
     }
 
