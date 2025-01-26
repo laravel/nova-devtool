@@ -16,6 +16,7 @@ use Laravel\Nova\Console\ValueCommand;
 use Orchestra\Workbench\Events\InstallEnded;
 use Orchestra\Workbench\Events\InstallStarted;
 use Orchestra\Workbench\Workbench;
+
 use function Illuminate\Filesystem\join_paths;
 
 class DevToolServiceProvider extends ServiceProvider
