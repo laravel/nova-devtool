@@ -10,6 +10,7 @@ use Laravel\Nova\Console\DashboardCommand;
 use Laravel\Nova\Console\FilterCommand;
 use Laravel\Nova\Console\LensCommand;
 use Laravel\Nova\Console\PolicyMakeCommand;
+use Laravel\Nova\Console\ProgressCommand;
 use Laravel\Nova\Console\RepeatableCommand;
 use Laravel\Nova\Console\ResourceCommand;
 use Laravel\Nova\Console\TableCommand;
@@ -46,6 +47,7 @@ class DevToolServiceProvider extends ServiceProvider
             $this->registerFilterCommand();
             $this->registerLensCommand();
             $this->registerPolicyMakeCommand();
+            $this->registerProgressCommand();
             $this->registerRepeatableCommand();
             $this->registerResourceCommand();
             $this->registerTableCommand();
@@ -59,8 +61,11 @@ class DevToolServiceProvider extends ServiceProvider
                 Console\FilterCommand::class,
                 Console\LensCommand::class,
                 Console\PolicyMakeCommand::class,
+                Console\ProgressCommand::class,
+                Console\RepeatableCommand::class,
                 Console\ResourceCommand::class,
                 Console\TableCommand::class,
+                Console\TrendCommand::class,
                 Console\ValueCommand::class,
             ]);
         }
@@ -123,6 +128,16 @@ class DevToolServiceProvider extends ServiceProvider
     {
         $this->app->singleton(PolicyMakeCommand::class, function ($app) {
             return new Console\PolicyMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the `nova:progress` command.
+     */
+    protected function registerProgressCommand(): void
+    {
+        $this->app->singleton(ProgressCommand::class, function ($app) {
+            return new Console\ProgressCommand($app['files']);
         });
     }
 
