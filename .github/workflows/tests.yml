@@ -42,6 +42,18 @@ jobs:
           tools: composer:v2
           coverage: none
 
+      - uses: actions/checkout@v4
+        name: Checkout private tools
+        with:
+          repository: laravel/nova
+          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          path: nova
+          ref: "main"
+
+      - name: Configure repository configuration
+        run: |
+          composer config repositories.nova '{"type": "path", "url": "nova"}' --file composer.json
+
       - name: Install dependencies
         run: |
            composer update --prefer-dist --no-interaction --no-progress --with="illuminate/contracts:^${{ matrix.laravel }}"
