@@ -52,6 +52,7 @@ class DevToolServiceProvider extends ServiceProvider
                 Console\LensCommand::class,
                 Console\PolicyMakeCommand::class,
                 Console\ResourceCommand::class,
+                Console\ValueCommand::class,
             ]);
         }
     }
