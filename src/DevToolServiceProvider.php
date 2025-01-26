@@ -12,6 +12,7 @@ use Laravel\Nova\Console\LensCommand;
 use Laravel\Nova\Console\PolicyMakeCommand;
 use Laravel\Nova\Console\ResourceCommand;
 use Laravel\Nova\Console\TableCommand;
+use Laravel\Nova\Console\TrendCommand;
 use Laravel\Nova\Console\ValueCommand;
 use Orchestra\Workbench\Events\InstallEnded;
 use Orchestra\Workbench\Events\InstallStarted;
@@ -46,6 +47,7 @@ class DevToolServiceProvider extends ServiceProvider
             $this->registerPolicyMakeCommand();
             $this->registerResourceCommand();
             $this->registerTableCommand();
+            $this->registerTrendCommand();
             $this->registerValueCommand();
 
             $this->commands([
@@ -139,6 +141,16 @@ class DevToolServiceProvider extends ServiceProvider
     {
         $this->app->singleton(TableCommand::class, function ($app) {
             return new Console\TableCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the `nova:trend` command.
+     */
+    protected function registerTrendCommand(): void
+    {
+        $this->app->singleton(TrendCommand::class, function ($app) {
+            return new Console\TrendCommand($app['files']);
         });
     }
 
