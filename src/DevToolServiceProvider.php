@@ -11,10 +11,11 @@ use Laravel\Nova\Console\FilterCommand;
 use Laravel\Nova\Console\LensCommand;
 use Laravel\Nova\Console\PolicyMakeCommand;
 use Laravel\Nova\Console\ResourceCommand;
+use Laravel\Nova\Console\TableCommand;
+use Laravel\Nova\Console\ValueCommand;
 use Orchestra\Workbench\Events\InstallEnded;
 use Orchestra\Workbench\Events\InstallStarted;
 use Orchestra\Workbench\Workbench;
-
 use function Illuminate\Filesystem\join_paths;
 
 class DevToolServiceProvider extends ServiceProvider
@@ -43,6 +44,8 @@ class DevToolServiceProvider extends ServiceProvider
             $this->registerLensCommand();
             $this->registerPolicyMakeCommand();
             $this->registerResourceCommand();
+            $this->registerTableCommand();
+            $this->registerValueCommand();
 
             $this->commands([
                 Console\ActionCommand::class,
@@ -52,6 +55,7 @@ class DevToolServiceProvider extends ServiceProvider
                 Console\LensCommand::class,
                 Console\PolicyMakeCommand::class,
                 Console\ResourceCommand::class,
+                Console\TableCommand::class,
                 Console\ValueCommand::class,
             ]);
         }
@@ -124,6 +128,26 @@ class DevToolServiceProvider extends ServiceProvider
     {
         $this->app->singleton(ResourceCommand::class, function ($app) {
             return new Console\ResourceCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the `nova:table` command.
+     */
+    protected function registerTableCommand(): void
+    {
+        $this->app->singleton(TableCommand::class, function ($app) {
+            return new Console\TableCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the `nova:value` command.
+     */
+    protected function registerValueCommand(): void
+    {
+        $this->app->singleton(ValueCommand::class, function ($app) {
+            return new Console\ValueCommand($app['files']);
         });
     }
 
