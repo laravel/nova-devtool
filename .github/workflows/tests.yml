@@ -46,7 +46,7 @@ jobs:
         name: Checkout private tools
         with:
           repository: laravel/nova
-          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           path: nova
           ref: "main"
 
