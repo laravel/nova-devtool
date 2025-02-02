@@ -44,7 +44,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-           composer update --prefer-dist --no-interaction --no-progress --with="illuminate/contracts:^${{ matrix.laravel }}"
+           composer update --no-interaction --no-progress --with="illuminate/contracts:^${{ matrix.laravel }}"
         env:
           COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.GITHUB_TOKEN }}"}}'
 

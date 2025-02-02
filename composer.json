@@ -42,10 +42,13 @@
         "nova": { "type": "composer", "url": "https://nova.laravel.com" }
     },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
-        }
+        },
+        "preferred-install": {
+            "*": "auto"
+        },
+        "sort-packages": true
     },
     "extra": {
         "laravel": {
