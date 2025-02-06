@@ -12,7 +12,6 @@
         "symfony/polyfill-php83": "^1.31"
     },
     "require-dev": {
-        "larastan/larastan": "^2.4",
         "laravel/nova": "^5.2",
         "laravel/pint": "^1.17",
         "orchestra/pest-plugin-testbench": "^2.0|^3.0",
