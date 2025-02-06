@@ -16,7 +16,7 @@
         "laravel/pint": "^1.17",
         "orchestra/pest-plugin-testbench": "^2.0|^3.0",
         "orchestra/testbench": "^8.30|^9.8",
-        "phpstan/phpstan": "^1.12",
+        "phpstan/phpstan": "^2.1",
         "spatie/laravel-ray": "^1.39"
     },
     "conflict": {
