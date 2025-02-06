@@ -1,6 +1,4 @@
 includes:
-  - ./vendor/larastan/larastan/extension.neon
-
 
 parameters:
 
@@ -15,6 +13,4 @@ parameters:
     - identifier: missingType.generics
     - '#Method [a-zA-Z\\\<\>]+::handle\(\) should return bool\|null but returns int.#'
 
-  noUnnecessaryCollectionCall: false
-  checkModelProperties: false
   reportUnmatchedIgnoredErrors: false
