@@ -26,7 +26,7 @@ class DevTool extends Nova
         $gate = app(GateContract::class);
 
         foreach ((new Finder)->in($directory)->files() as $resource) {
-            /** @var class-string<\Laravel\Nova\Resource> $resourceClass */
+            /** @var class-string $resourceClass */
             $resourceClass = $namespace.str_replace(
                 ['/', '.php'],
                 ['\\', ''],
