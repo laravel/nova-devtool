@@ -10,7 +10,7 @@ use Orchestra\Workbench\Events\InstallEnded;
 use Orchestra\Workbench\StubRegistrar;
 use Orchestra\Workbench\Workbench;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\join_paths;
 
 class InstalledWorkbench
 {
