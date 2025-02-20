@@ -13,8 +13,8 @@ use Orchestra\Workbench\WorkbenchServiceProvider;
 use RuntimeException;
 use Workbench\Database\Seeders\DatabaseSeeder as WorkbenchDatabaseSeeder;
 
+use function Orchestra\Sidekick\join_paths;
 use function Orchestra\Testbench\default_skeleton_path;
-use function Orchestra\Testbench\join_paths;
 
 abstract class CommandTestCase extends \Orchestra\Testbench\TestCase
 {
