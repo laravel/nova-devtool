@@ -5,7 +5,7 @@ namespace Tests\Command;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
-use function Orchestra\Testbench\laravel_version_compare;
+use function Orchestra\Sidekick\laravel_version_compare;
 
 class DevToolCommandTest extends CommandTestCase
 {
