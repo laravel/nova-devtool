@@ -7,6 +7,7 @@ use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\PackageManifest;
 use Symfony\Component\Console\Attribute\AsCommand;
+
 use function Orchestra\Sidekick\join_paths;
 
 #[AsCommand(name: 'nova:enable-vue-devtool', description: 'Enable Vue DevTool for Laravel Nova')]
@@ -29,7 +30,7 @@ class EnableVueDevToolCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(Filesystem $filesystem, PackageManifest $manifest)
+    public function handle(Filesystem $filesystem, PackageManifest $manifest): int
     {
         if (! $this->confirmToProceed()) {
             return self::FAILURE;

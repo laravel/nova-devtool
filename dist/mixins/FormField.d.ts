@@ -80,6 +80,12 @@ declare namespace _default {
          */
         function isReadonly(): boolean;
         /**
+         * Determine if the field is in immutable state.
+         *
+         * @return {boolean}
+         */
+        function isImmutable(): boolean;
+        /**
          * Determine if the field is accessed from Action.
          *
          * @returns {boolean}
