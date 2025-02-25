@@ -154,31 +154,7 @@ class DevToolCommand extends Command implements PromptsForMissingInput
      */
     protected function enablesVueDevTool(Filesystem $filesystem, PackageManifest $manifest): int
     {
-        $novaVendorPath = join_paths($manifest->vendorPath, 'laravel', 'nova');
-
-        $publicPath = join_paths($novaVendorPath, 'public');
-        $publicCachePath = join_paths($novaVendorPath, 'public-cached');
-        $webpackFile = join_paths($novaVendorPath, 'webpack.mix.js');
-
-        if (! $filesystem->isDirectory($publicCachePath)) {
-            $filesystem->makeDirectory($publicCachePath);
-
-            $filesystem->copyDirectory($publicPath, $publicCachePath);
-            $filesystem->put(join_paths($publicCachePath, '.gitignore'), '*');
-        }
-
-        if (! $filesystem->isFile($webpackFile)) {
-            $filesystem->copy("{$webpackFile}.dist", $webpackFile);
-        }
-
-        $this->executeCommand(['npm set progress=false', 'npm ci'], $novaVendorPath);
-        $filesystem->put(join_paths($novaVendorPath, 'node_modules', '.gitignore'), '*');
-
-        $this->executeCommand(['npm set progress=false', 'npm run dev'], $novaVendorPath);
-
-        $this->call('vendor:publish', ['--tag' => 'nova-assets', '--force' => true]);
-
-        return self::SUCCESS;
+        return $this->call('nova:enable-vue-devtool', ['--force' => true]);
     }
 
     /**
@@ -186,24 +162,7 @@ class DevToolCommand extends Command implements PromptsForMissingInput
      */
     protected function disablesVueDevTool(Filesystem $filesystem, PackageManifest $manifest): int
     {
-        $novaVendorPath = join_paths($manifest->vendorPath, 'laravel', 'nova');
-
-        $publicPath = join_paths($novaVendorPath, 'public');
-        $publicCachePath = join_paths($novaVendorPath, 'public-cached');
-
-        if ($filesystem->isDirectory($publicCachePath)) {
-            if ($filesystem->isDirectory($publicPath)) {
-                $filesystem->deleteDirectory($publicPath);
-            }
-
-            $filesystem->delete(join_paths($publicCachePath, '.gitignore'));
-            $filesystem->copyDirectory($publicCachePath, $publicPath);
-            $filesystem->deleteDirectory($publicCachePath);
-        }
-
-        $this->call('vendor:publish', ['--tag' => 'nova-assets', '--force' => true]);
-
-        return self::SUCCESS;
+        return $this->call('nova:disable-vue-devtool', ['--force' => true]);
     }
 
     /**

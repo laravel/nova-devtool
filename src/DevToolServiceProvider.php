@@ -35,7 +35,8 @@ class DevToolServiceProvider extends ServiceProvider
         }
 
         $this->commands([
-            Console\DevToolCommand::class,
+            Console\DisableVueDevToolCommand::class,
+            Console\EnableVueDevToolCommand::class,
         ]);
 
         if (defined('TESTBENCH_WORKING_PATH')) {
@@ -60,6 +61,7 @@ class DevToolServiceProvider extends ServiceProvider
                 Console\ActionCommand::class,
                 Console\BaseResourceCommand::class,
                 Console\DashboardCommand::class,
+                Console\DevToolCommand::class,
                 Console\FilterCommand::class,
                 Console\LensCommand::class,
                 Console\PartitionCommand::class,
