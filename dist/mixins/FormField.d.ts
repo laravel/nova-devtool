@@ -26,6 +26,14 @@ declare namespace _default {
          */
         function fill(formData: FormData): void;
         /**
+         * Provide a function to fills FormData when field.
+         *
+         * @param {FormData} formData
+         * @param {string} attribute
+         * @param {any} value
+         */
+        function fillInto(formData: FormData, attribute: string, value: any): void;
+        /**
          * Provide a function to fills FormData when field is visible.
          *
          * @param {FormData} formData
