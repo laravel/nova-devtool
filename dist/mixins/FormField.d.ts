@@ -1,7 +1,7 @@
 declare namespace _default {
     export { FormEvents as extends };
     export let props: {
-        [x: string]: any;
+        [key: string]: any;
     };
     export let emits: string[];
     export function data(): {
