@@ -1,7 +1,7 @@
 declare namespace _default {
     export { FormEvents as extends };
     export let props: {
-        [x: string]: any;
+        [key: string]: any;
     };
     export let emits: string[];
     export function data(): {
@@ -87,6 +87,12 @@ declare namespace _default {
          * @returns {boolean}
          */
         function isReadonly(): boolean;
+        /**
+         * Determine if the field is in immutable state.
+         *
+         * @return {boolean}
+         */
+        function isImmutable(): boolean;
         /**
          * Determine if the field is accessed from Action.
          *
