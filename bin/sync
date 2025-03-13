@@ -7,10 +7,6 @@ require __DIR__.'/../vendor/autoload.php';
 
 $files = new Illuminate\Filesystem\Filesystem();
 
-function run(string $command, ?string $cwd = null) use ($workingPath) {
-
-};
-
 Illuminate\Support\Collection::make([
     'resource.stub',
     'lens.stub',
