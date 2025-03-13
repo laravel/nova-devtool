@@ -57,8 +57,8 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
     leadingIcon: {};
     trailingIcon: {};
 }>> & Readonly<{}>, {
-    size: string;
     disabled: boolean;
+    size: string;
     variant: string;
     as: string;
     state: string;
