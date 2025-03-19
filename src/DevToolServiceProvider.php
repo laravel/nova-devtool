@@ -19,6 +19,7 @@ use Laravel\Nova\Console\TrendCommand;
 use Laravel\Nova\Console\ValueCommand;
 use Orchestra\Workbench\Events\InstallEnded;
 use Orchestra\Workbench\Events\InstallStarted;
+use Orchestra\Workbench\StubRegistrar;
 use Orchestra\Workbench\Workbench;
 
 use function Orchestra\Sidekick\join_paths;
@@ -40,8 +41,10 @@ class DevToolServiceProvider extends ServiceProvider
         ]);
 
         if (defined('TESTBENCH_WORKING_PATH')) {
-            Workbench::swapFile('config', join_paths(__DIR__, '..', 'stubs', 'testbench.stub'));
-            Workbench::swapFile('seeders.database', join_paths(__DIR__, '..', 'stubs', 'DatabaseSeeder.stub'));
+            tap(Workbench::stub(), function (StubRegistrar $stub) {
+                $stub->swap('config', join_paths(__DIR__, '..', 'stubs', 'testbench.stub'));
+                $stub->swap('seeders.database', join_paths(__DIR__, '..', 'stubs', 'DatabaseSeeder.stub'));
+            });
 
             $this->registerActionCommand();
             $this->registerBaseResourceCommand();
