@@ -5,11 +5,11 @@
   "types": "types/index.d.ts",
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
-    "@inertiajs/vue3": "^2.0.5",
+    "@inertiajs/vue3": "^2.0.6",
     "axios": "^1.7.9",
     "lodash": "^4.17.21",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.8.2",
+    "typescript": "^5.8.3",
     "vue": "^3.5.13",
     "vuex": "^4.1.0"
   },
@@ -23,8 +23,8 @@
     "vue-loader": "^17.4.2"
   },
   "peerDependencies": {
-    "@inertiajs/core": "^2.0.5",
-    "@inertiajs/vue3": "^2.0.5",
+    "@inertiajs/core": "^2.0.6",
+    "@inertiajs/vue3": "^2.0.6",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.16",
     "axios": "^1.8.4",
