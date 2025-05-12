@@ -32,8 +32,8 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
     "onUpdate:modelValue"?: (...args: any[]) => any;
     onChange?: (...args: any[]) => any;
 }>, {
-    disabled: boolean;
     indeterminate: boolean;
     modelValue: boolean;
+    disabled: boolean;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 export default _default;
