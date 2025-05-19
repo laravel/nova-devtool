@@ -59,10 +59,10 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
 }>> & Readonly<{}>, {
     variant: string;
     size: string;
-    disabled: boolean;
     as: string;
     state: string;
     padding: string;
     loading: boolean;
+    disabled: boolean;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 export default _default;
