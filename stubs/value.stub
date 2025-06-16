@@ -45,4 +45,12 @@ class {{ class }} extends Value
 
         return null;
     }
+
+    /**
+     * Get the URI key for the metric.
+     */
+    public function uriKey(): string
+    {
+        return 'uri-key';
+    }
 }
