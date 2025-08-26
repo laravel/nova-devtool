@@ -11,10 +11,10 @@ composer require --dev laravel/nova-devtool
 Once installed, you can run the following to update NPM's `package.json`:
 
 ```shell
-npm install --save-dev "vendor/laravel/nova-devtool"
+npm install --save-dev @laravel/nova-devtool
 ```
 
-## Usages
+## Usage
 
 ### Setup Laravel Nova Workbench
 
@@ -43,7 +43,7 @@ workbench:
 
 ### Install Axios, Lodash, Tailwind CSS or Vue
 
-To simplify the installation, you can run the following commnad:
+To simplify the installation, you can run the following command:
 
 ```shell
 php vendor/bin/testbench nova:devtool install
