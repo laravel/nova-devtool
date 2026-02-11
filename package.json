@@ -5,12 +5,12 @@
   "types": "types/index.d.ts",
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
-    "@inertiajs/vue3": "^2.0.14",
-    "axios": "^1.11.0",
-    "lodash": "^4.17.21",
-    "tailwindcss": "^3.4.17",
+    "@inertiajs/vue3": "^2.3.13",
+    "axios": "^1.13.5",
+    "lodash": "^4.17.23",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5.8.3",
-    "vue": "^3.5.17",
+    "vue": "^3.5.28",
     "vuex": "^4.1.0"
   },
   "dependencies": {
@@ -23,15 +23,15 @@
     "vue-loader": "^17.4.2"
   },
   "peerDependencies": {
-    "@inertiajs/core": "^2.0.14",
-    "@inertiajs/vue3": "^2.0.14",
+    "@inertiajs/core": "^2.3.13",
+    "@inertiajs/vue3": "^2.3.13",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.16",
-    "axios": "^1.11.0",
-    "lodash": "^4.17.21",
-    "tailwindcss": "^3.4.17",
+    "axios": "^1.13.5",
+    "lodash": "^4.17.23",
+    "tailwindcss": "^3.4.19",
     "uid": "^2.0.2",
-    "vue": "^3.5.17",
+    "vue": "^3.5.28",
     "vuex": "^4.1.0"
   }
 }
