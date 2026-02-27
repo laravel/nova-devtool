@@ -8,15 +8,15 @@
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
         "fakerphp/faker": "^1.24",
-        "orchestra/sidekick": "^1.2.9",
-        "orchestra/workbench": "^8.17.4|^9.13.4|^10.0.3",
-        "symfony/polyfill-php83": "^1.32"
+        "orchestra/sidekick": "^1.2.20",
+        "orchestra/workbench": "^8.17.4|^9.13.4|^10.0.3|^11.0",
+        "symfony/polyfill-php83": "^1.33"
     },
     "require-dev": {
         "laravel/nova": "^5.7.7",
         "laravel/pint": "^1.17",
-        "orchestra/pest-plugin-testbench": "^2.0|^3.0",
-        "orchestra/testbench": "^8.30|^9.8|^10.0",
+        "orchestra/pest-plugin-testbench": "^2.0|^3.0|^4.0",
+        "orchestra/testbench": "^8.30|^9.8|^10.0|^11.0",
         "phpstan/phpstan": "^2.1.14",
         "spatie/laravel-ray": "^1.40.2"
     },

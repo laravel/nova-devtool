@@ -14,7 +14,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\select;
-use function Orchestra\Sidekick\join_paths;
+use function Orchestra\Sidekick\Filesystem\join_paths;
 use function Orchestra\Testbench\default_skeleton_path;
 use function Orchestra\Testbench\package_path;
 use function Orchestra\Testbench\workbench_path;
