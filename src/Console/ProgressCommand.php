@@ -18,7 +18,7 @@ class ProgressCommand extends Command
 
     /** {@inheritDoc} */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         $this->addGeneratorPresetOptions();
 

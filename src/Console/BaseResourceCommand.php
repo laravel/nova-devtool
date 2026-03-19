@@ -18,7 +18,7 @@ class BaseResourceCommand extends Command
 
     /** {@inheritDoc} */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         $this->addGeneratorPresetOptions();
 

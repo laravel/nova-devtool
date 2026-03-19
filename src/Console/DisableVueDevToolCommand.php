@@ -18,7 +18,7 @@ class DisableVueDevToolCommand extends Command
 
     /** {@inheritDoc} */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 
