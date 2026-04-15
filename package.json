@@ -20,7 +20,8 @@
     "postcss": "^8.5.6",
     "postcss-import": "^14.1.0",
     "prettier-plugin-tailwindcss": "^0.5.14",
-    "vue-loader": "^17.4.2"
+    "vue-loader": "^17.4.2",
+    "webpack": "~5.105.4"
   },
   "peerDependencies": {
     "@inertiajs/core": "^2.3.18",
