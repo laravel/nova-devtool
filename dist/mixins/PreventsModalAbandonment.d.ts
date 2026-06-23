@@ -1,11 +1,4 @@
 declare namespace _default {
-    namespace props {
-        namespace show {
-            export let type: BooleanConstructor;
-            let _default: boolean;
-            export { _default as default };
-        }
-    }
     namespace methods {
         /**
          * Prevent accidental abandonment only if form was changed.
