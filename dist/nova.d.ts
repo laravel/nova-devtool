@@ -79,7 +79,7 @@ export default class Nova {
     store: VueStore;
     countdown(): void;
     /** @protected */
-    protected mountTo: Element;
+    protected mountTo: HTMLElement;
     /**
      * @protected
      * @type VueApp
